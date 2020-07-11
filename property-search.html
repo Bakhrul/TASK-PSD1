@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Search</title>
+</head>
+<style>
+    @font-face {
+        font-family: Helvetica Neue;
+        src: url(assets/fonts/HelveticaNeueMed.ttf);
+    }
+
+    body {
+        margin: 0 !important;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif !important;
+        background-color: #f2f2f2;
+        padding-bottom: 8em;
+    }
+
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /* .row{
+        margin-left: -15px;
+        margin-right: -15px;
+    } */
+    .property-content-group {
+        padding: 15px;
+    }
+
+    .row::before,
+    .row::after {
+        display: table;
+        content: " ";
+        clear: both;
+    }
+
+    .sm-one,
+    .sm-two,
+    .sm-thirds,
+    .sm-fourth,
+    .md-one,
+    .md-two,
+    .md-third,
+    .md-four,
+    .lg-one,
+    .lg-two,
+    .lg-four,
+    .lg-third {
+        width: 100%;
+    }
+
+    @keyframes fadeEffect {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media only screen and (max-width: 800px) {
+        .sm-one {
+            width: 100%;
+        }
+
+        .sm-two {
+            width: calc(100% / 2);
+        }
+
+        .sm-third {
+            width: calc(100% / 3 * 2);
+        }
+
+        .sm-fourth {
+            width: calc(100% / 4);
+        }
+
+        .column {
+            float: left;
+        }
+    }
+
+    @media only screen and (min-width: 800px) {
+        .md-one {
+            width: 100%;
+        }
+
+        .md-two {
+            width: calc(100% / 2);
+        }
+
+        .md-third {
+            width: calc(100% / 3);
+        }
+
+        .md-fourth {
+            width: calc(100% / 4);
+        }
+
+        .column {
+            float: left;
+        }
+
+    }
+
+    @media only screen and (min-width: 1200px) {
+        .lg-one {
+            width: 100%;
+        }
+
+        .lg-two {
+            width: calc(100% / 2);
+        }
+
+        .lg-third {
+            width: calc(100% / 3);
+        }
+
+        .lg-fourth {
+            width: calc(100% / 4);
+        }
+
+        .column {
+            float: left;
+        }
+    }
+
+
+    .header {
+        background-image: url("assets/image/bg-header.png");
+        height: 200px;
+        background-position: center center;
+        background-size: cover;
+        width: 100%;
+        border-radius: 0 0 30px 30px;
+
+        background-repeat: no-repeat;
+    }
+
+    .header-property {
+        width: 100%;
+        background-color: white;
+        position: relative;
+        height: 40px;
+        z-index: 999;
+    }
+
+    .title-header {
+        color: white;
+        font-size: 32px;
+        font-weight: 600;
+    }
+
+    .header-box {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: row;
+        height: 100%;
+    }
+
+    .icon-back-header img {
+        width: 10px;
+        margin-top: 5px;
+        height: 20px;
+        margin-right: 25px;
+    }
+
+    .icon-back-header {
+        background: transparent !important;
+        border: 0 !important;
+        outline: none !important;
+        cursor: pointer;
+    }
+
+    .subheader-property {
+        position: relative;
+        top: -35px;
+        background-color: white;
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.20);
+        border-radius: 10px;
+    }
+
+    .tab-header {
+        border-bottom: 1px #8c1839 solid;
+        padding: 15px 0;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .tab-header .tablinks {
+        background-color: transparent !important;
+        border: 0;
+        color: #8c1839;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: bold;
+        height: 20px;
+    }
+
+    .tablinks:focus {
+        border: 0 !important;
+        outline: none !important;
+    }
+
+    .tabcontent {
+        padding: 30px 20px;
+        color: #3e3e3d;
+        animation: fadeEffect 1s;
+        font-family: Lato;
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+    .header-active-border {
+        background-color: #8c1839;
+        height: 10px;
+        position: absolute;
+        top: 30px;
+        border-radius: 0 10px 10px 0;
+        width: 100%;
+    }
+
+    .d-none {
+        display: none;
+    }
+
+    .w-100 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .p-relative {
+        position: relative;
+    }
+
+    .sub-sorting {
+        background-color: white;
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.20);
+        border-radius: 40px;
+        display: flex;
+        position: relative;
+        top: -10px;
+        justify-content: space-between;
+    }
+
+    .sub-sorting-element {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 5px;
+        cursor: pointer;
+        border: 0;
+        outline: none !important;
+        background: transparent !important;
+        margin: 5px 0;
+        align-items: center;
+        width: 100%;
+    }
+
+    .sub-sorting-element:first-child {
+        border-right: 1px #8c1839 solid;
+    }
+
+    .sub-sorting-element:nth-child(2) {
+        border-right: 1px #8c1839 solid;
+    }
+
+    .sub-sorting-element img {
+        width: 15px;
+        margin-right: 5px;
+        height: 15px;
+    }
+
+    .sub-sorting-element .text-sorting {
+        font-size: 14px;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif !important;
+        color: #8c1839;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 60px;
+        background: white;
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.20);
+        border-radius: 50px 50px 0 0;
+        padding: 15px 0;
+    }
+
+    .footer-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+    }
+
+    .footer-group .footer-elemet {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background: transparent !important;
+        border: 0 !important;
+        outline: none !important;
+    }
+
+    .footer-group .footer-elemet img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .footer-group .footer-elemet .text-footer {
+        color: #90a5b6;
+        font-size: 13px;
+        font-weight: normal;
+        padding-top: 10px;
+    }
+
+    .property-content-group .property-content-header {
+        position: relative;
+    }
+
+    .property-content-group .property-content-header .btn-love-property {
+        position: absolute;
+        top: 8px;
+        padding: 8px;
+        border: 0;
+        background: white !important;
+        border-radius: 100px;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        border: 0 !important;
+        outline: none !important;
+        align-items: center;
+        right: 10px;
+    }
+
+    .property-content-group .property-content-header .btn-love-property img {
+        width: 15px;
+        height: 15px;
+    }    
+
+    .property-content-group .property-content-header .img-product-property {
+        width: 100%;
+        height: 200px;
+        border-radius: 20px;
+    }
+
+    .bg-clips-property {
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url("assets/image/icon_clips.png");
+        width: 100px;
+        height: 30px;
+        position: absolute;
+        bottom: 20px;
+        right: -23px;
+    }
+
+    .bg-clips-property div {
+        position: absolute;
+        top: 8px;
+        font-size: 12px;
+        left: 15px;
+        font-weight: normal;
+        color: white;
+    }
+
+    .title-product-property {
+        margin-block-start: 0 !important;
+        font-size: 15px;
+        font-weight: 600;
+        padding-top: 10px;
+        margin-block-end: 0;
+    }
+
+    .price-product-property {
+        font-size: 15px;
+        font-weight: 600;
+        padding-top: 10px;
+        color: #ca2030;
+    }
+
+    .title-address-property {
+        font-size: 13px;
+        font-weight: 450;
+        /* font-family: "Helvetica Neue"; */
+    }
+
+    .desc-address-property {
+        font-size: 13px;
+        font-weight: normal;
+        color: #666666;
+    }
+
+    .bg-white {
+        background-color: white !important;
+    }
+
+    .pt-15 {
+        padding-top: 15px;
+    }
+
+    .pb-15 {
+        padding-bottom: 15px;
+    }
+
+    .property-premium-wrapper {
+        background-color: white;
+        padding: 15px 0;
+        margin: 10px 0 30px 0;
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.20);
+    }
+
+    .px-15 {
+        padding: 0 15px;
+    }
+
+    .property-premium-header {
+        display: flex;
+        justify-content: space-between;
+        padding: 30px 30px 15px 15px;
+    }
+
+    .property-premium-header button img {
+        width: 15px;
+        height: 20px;
+    }
+
+    .property-premium-header button {
+        width: 15px;
+        height: 20px;
+        background-color: transparent !important;
+        border: 0 !important;
+        cursor: pointer;
+        outline: none !important;
+    }
+
+    .property-premium-header h5 {
+        color: #ec1e2b;
+        font-family: "Helvetica Neue";
+        margin-block-start: 0;
+        margin-block-end: 0;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .bg-clips-premium {
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url(assets/image/icon_clips_premium.png);
+        width: 90px;
+        height: 90px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .bg-clips-premium div {
+        padding-top: 10px;
+        padding-left: 5px;
+        color: #efeded;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    @media only screen and (min-width: 1200px) {
+        .property-premium-wrapper .lg-fourth {
+            display: block !important;
+        }
+    }
+
+    @media only screen and (min-width: 800px) {
+        .property-premium-wrapper .lg-fourth {
+            display: none;
+        }
+
+        .property-premium-wrapper .lg-fourth:nth-child(1) {
+            display: block;
+        }
+
+        .property-premium-wrapper .lg-fourth:nth-child(2) {
+            display: block;
+        }
+
+        .property-premium-wrapper .lg-fourth:nth-child(3) {
+            display: block;
+        }
+    }
+
+    @media only screen and (max-width: 800px) {
+        .property-premium-wrapper .lg-fourth {
+            display: none;
+        }
+
+        .property-premium-wrapper .lg-fourth:nth-child(1) {
+            display: block;
+        }
+
+        .property-premium-wrapper .lg-fourth:nth-child(2) {
+            display: block;
+        }
+
+    }
+</style>
+
+<body>
+    <section class="header">
+        <div class="container header-box px-15">
+            <button class="icon-back-header"><img src="assets/image/icon-back.png" /></button>
+            <div class="title-header">Property Search</div>
+        </div>
+    </section>
+    <section class="sub-header px-15">
+        <div class="container">
+            <div class="subheader-property">
+                <div class="tab-header">
+                    <div class="w-100 p-relative">
+                        <button class="tablinks" onclick="openTab(event, 'all', 'border-all')"
+                            id="defaultOpen">All</button>
+                        <div class="header-active-border" id="border-all"></div>
+                    </div>
+                    <div class="w-100 p-relative">
+                        <button class="tablinks" onclick="openTab(event, 'buy', 'border-buy')"
+                            id="defaultOpen">BUY</button>
+                        <div class="header-active-border" id="border-buy"></div>
+                    </div>
+                    <div class="w-100 p-relative">
+                        <button class="tablinks" onclick="openTab(event, 'rent','border-rent')"
+                            id="defaultOpen">RENT</button>
+                        <div class="header-active-border" id="border-rent"></div>
+                    </div>
+                </div>
+                <div id="all" class="tabcontent">
+                    Pondok Indah
+                </div>
+                <div id="buy" class="tabcontent">
+                    Pondok Melati
+                </div>
+                <div id="rent" class="tabcontent">
+                    Pondok Mawar
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="px-15">
+        <div class="container">
+            <div class="sub-sorting">
+                <button class="sub-sorting-element">
+                    <img src="assets/image/icon-sort.png">
+                    <div class="text-sorting">Sort</div>
+                </button>
+                <button class="sub-sorting-element">
+                    <img src="assets/image/icon-filter.png">
+                    <div class="text-sorting">Filter</div>
+                </button>
+                <button class="sub-sorting-element">
+                    <img src="assets/image/icon-nearme.png">
+                    <div class="text-sorting">Near Me</div>
+                </button>
+            </div>
+        </div>
+    </section>
+    <section class="property-premium-wrapper">
+        <div class="container">
+            <div class="property-premium-header px-15">
+                <h5>Premium Listings</h5>
+                <button class=""><img src="assets/image/icon-next.png"></button>
+            </div>
+
+            <div class="row">
+                <div class="lg-fourth md-third sm-two column">
+                    <div class="property-content-group">
+                        <div class="property-content-header">
+                            <div class="bg-clips-premium">
+                                <div>PREMIUM</div>
+                            </div>
+                            <button class="btn btn-love-property"><img src="assets/image/icon-save.png"></button>
+                            <img src="assets/image/image_home1.png" class="img-product-property">
+                            <div class="bg-clips-property">
+                                <div>FOR RENT</div>
+                            </div>
+                        </div>
+                        <div class="property-content-body">
+                            <h5 class="title-product-property">Rumah - Jakarta</h5>
+                            <div class="price-product-property">IDR 11.500.000.000</div>
+                            <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
+                            <div class="desc-address-property">Land Size (LT) 999 m2
+                                Building Size (LB) 999 m2</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg-fourth md-third sm-two column">
+                    <div class="property-content-group">
+                        <div class="property-content-header">
+                            <button class="btn btn-love-property"><img src="assets/image/icon-save-active.png"></button>
+                            <img src="assets/image/image_home1.png" class="img-product-property">
+                            <div class="bg-clips-property">
+                                <div>FOR RENT</div>
+                            </div>
+                        </div>
+                        <div class="property-content-body">
+                            <h5 class="title-product-property">Rumah - Jakarta</h5>
+                            <div class="price-product-property">IDR 11.500.000.000</div>
+                            <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
+                            <div class="desc-address-property">Land Size (LT) 999 m2
+                                Building Size (LB) 999 m2</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg-fourth md-third sm-two column">
+                    <div class="property-content-group">
+                        <div class="property-content-header">
+                            <button class="btn btn-love-property"><img src="assets/image/icon-save.png"></button>
+                            <img src="assets/image/image_home1.png" class="img-product-property">
+                            <div class="bg-clips-property">
+                                <div>FOR RENT</div>
+                            </div>
+                        </div>
+                        <div class="property-content-body">
+                            <h5 class="title-product-property">Rumah - Jakarta</h5>
+                            <div class="price-product-property">IDR 11.500.000.000</div>
+                            <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
+                            <div class="desc-address-property">Land Size (LT) 999 m2
+                                Building Size (LB) 999 m2</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg-fourth md-third sm-two column">
+                    <div class="property-content-group">
+                        <div class="property-content-header">
+                            <button class="btn btn-love-property"><img src="assets/image/icon-save.png"></button>
+                            <img src="assets/image/image_home1.png" class="img-product-property">
+                            <div class="bg-clips-property">
+                                <div>FOR RENT</div>
+                            </div>
+                        </div>
+                        <div class="property-content-body">
+                            <h5 class="title-product-property">Rumah - Jakarta</h5>
+                            <div class="price-product-property">IDR 11.500.000.000</div>
+                            <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
+                            <div class="desc-address-property">Land Size (LT) 999 m2
+                                Building Size (LB) 999 m2</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="lg-fourth md-third sm-two column">
+                    <div class="property-content-group">
+                        <div class="property-content-header">
+                            <button class="btn btn-love-property"><img src="assets/image/icon-save.png"></button>
+                            <img src="assets/image/image_home1.png" class="img-product-property">
+                            <div class="bg-clips-property">
+                                <div>FOR RENT</div>
+                            </div>
+                        </div>
+                        <div class="property-content-body">
+                            <h5 class="title-product-property">Rumah - Jakarta</h5>
+                            <div class="price-product-property">IDR 11.500.000.000</div>
+                            <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
+                            <div class="desc-address-property">Land Size (LT) 999 m2
+                                Building Size (LB) 999 m2</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg-fourth md-third sm-two column">
+                    <div class="property-content-group">
+                        <div class="property-content-header">
+                            <button class="btn btn-love-property"><img src="assets/image/icon-save-active.png"></button>
+                            <img src="assets/image/image_home2.png" class="img-product-property">
+                            <div class="bg-clips-property">
+                                <div>FOR RENT</div>
+                            </div>
+                        </div>
+                        <div class="property-content-body">
+                            <h5 class="title-product-property">Rumah - Jakarta</h5>
+                            <div class="price-product-property">IDR 11.500.000.000</div>
+                            <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
+                            <div class="desc-address-property">Land Size (LT) 999 m2
+                                Building Size (LB) 999 m2</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg-fourth md-third sm-two column">
+                    <div class="property-content-group">
+                        <div class="property-content-header">
+                            <button class="btn btn-love-property"><img src="assets/image/icon-save.png"></button>
+                            <img src="assets/image/image_home3.png" class="img-product-property">
+                            <div class="bg-clips-property">
+                                <div>FOR RENT</div>
+                            </div>
+                        </div>
+                        <div class="property-content-body">
+                            <h5 class="title-product-property">Rumah - Jakarta</h5>
+                            <div class="price-product-property">IDR 11.500.000.000</div>
+                            <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
+                            <div class="desc-address-property">Land Size (LT) 999 m2
+                                Building Size (LB) 999 m2</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg-fourth md-third sm-two column">
+                    <div class="property-content-group">
+                        <div class="property-content-header">
+                            <button class="btn btn-love-property"><img src="assets/image/icon-save.png"></button>
+                            <img src="assets/image/image_home4.png" class="img-product-property">
+                            <div class="bg-clips-property">
+                                <div>FOR RENT</div>
+                            </div>
+                        </div>
+                        <div class="property-content-body">
+                            <h5 class="title-product-property">Rumah - Jakarta</h5>
+                            <div class="price-product-property">IDR 11.500.000.000</div>
+                            <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
+                            <div class="desc-address-property">Land Size (LT) 999 m2
+                                Building Size (LB) 999 m2</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="container footer-group">
+            <button class="footer-elemet">
+                <img src="assets/image/icon-save.png">
+                <div class="text-footer">Saved</div>
+            </button>
+            <button class="footer-elemet">
+                <img src="assets/image/icon-news.png">
+                <div class="text-footer">News</div>
+            </button>
+            <button class="footer-elemet">
+                <img src="assets/image/icon-home.png">
+                <div class="text-footer">Home</div>
+            </button>
+            <button class="footer-elemet">
+                <img src="assets/image/icon-chats.png">
+                <div class="text-footer">Chats</div>
+            </button>
+            <button class="footer-elemet">
+                <img src="assets/image/icon-profile.png">
+                <div class="text-footer">Profile</div>
+            </button>
+        </div>
+    </section>
+    <script>
+        function openTab(evt, tabName, borderName) {
+            var i, tabcontent, tablinks, borderheader;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            borderheader = document.getElementsByClassName("header-active-border");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                borderheader[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(borderName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("defaultOpen").click();
+    </script>
+</body>
+
+</html>

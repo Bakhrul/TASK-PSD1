@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<style>
+    @font-face {
+        font-family: Helvetica;
+        src: url(assets/fonts/HelveticaNeueBd.ttf);
+    }
+
+    body {
+        margin: 0 !important;
+        font-family: Helvetica;
+        background-color: white !important;
+    }
+
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .header {
+        background-image: url("assets/image/bg-header.png");
+        height: 200px;
+        background-position: center center;
+        background-size: cover;
+        width: 100%;
+        border-radius: 0 0 30px 30px;
+        background-repeat: no-repeat;
+    }
+
+    .header-box {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+    .title-header {
+        font-size: 42px;
+        padding-left: 50px;
+        font-weight: 600;
+        color: white;
+    }
+
+    .sub-header-box {
+        position: relative;
+        top: -40px;
+        box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.20);
+        border-left: 1px #f2f2f2 solid;
+        border-radius: 20px;
+        width: 100%;
+        background: white;
+    }
+
+    .sub-header-box .header-image-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sub-header-box .header-image-box img {
+        width: 65px;
+        margin-bottom: 55px;
+        height: 80px;
+        margin-top: 56px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px 0px;
+        margin: 2px 0 25px 0;
+        display: inline-block;
+        border: 0;
+        outline: none;
+        box-sizing: border-box;
+        border-bottom: 1px #ccc solid;
+    }
+
+    .form-group label {
+        font-weight: normal !important;
+        font-size: 16px;
+        padding-top: 50px;
+        opacity: 0.9;
+        color: #3e3e3d;
+    }
+
+    .btn-register {
+        background: #8c1839;
+        color: white;
+        width: 100%;
+        padding: 15px 15px;
+        font-size: 22px;
+        margin-top: 20px;
+        border: 0 !important;
+        outline: none !important;
+        font-weight: 500 !important;
+        cursor: pointer;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .sub-body-box {
+        padding: 15px;
+    }
+    .px-15{
+        padding: 0 15px;
+    }
+</style>
+
+<body>
+    <section class="header">
+        <div class="container header-box px-15">
+            <h5 class="title-header">Register</h5>
+        </div>
+    </section>
+    <section class="sub-header px-15">
+        <div class="container">
+            <div class="sub-header-box">
+                <div class="header-image-box">
+                    <img src="assets/image/logo.png">
+                </div>
+                <div class="sub-body-box">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Re-type Password</label>
+                        <input type="password" class="form-control">
+                    </div>
+                </div>
+                <button class="btn btn-register">Create Account</button>
+
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
