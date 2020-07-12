@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <title>Filter</title>
+</head>
+<style>
+    @font-face {
+        font-family: Helvetica;
+        src: url(assets/fonts/HelveticaNeueLight.ttf);
+    }
+
+    body {
+        margin: 0 !important;
+        font-family: Helvetica, Arial, sans-serif !important;
+        background-color: white;
+        padding-bottom: 8em;
+    }
+
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .header {
+        background-image: url("assets/image/bg-header.png");
+        height: 200px;
+        background-position: center center;
+        background-size: cover;
+        width: 100%;
+        border-radius: 0 0 30px 30px;
+
+        background-repeat: no-repeat;
+    }
+
+    .header-filter {
+        width: 100%;
+        background-color: white;
+        position: relative;
+        height: 40px;
+        z-index: 999;
+    }
+
+    .title-header {
+        color: white;
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    .header-box {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: row;
+        height: 100%;
+    }
+
+    .icon-back-header img {
+        width: 10px;
+        margin-top: 5px;
+        height: 20px;
+        margin-right: 25px;
+    }
+
+    .icon-back-header {
+        background: transparent !important;
+        border: 0 !important;
+        outline: none !important;
+        cursor: pointer;
+    }
+
+    .subheader-filter {
+        position: relative;
+        top: -35px;
+        background-color: white;
+        box-shadow: 10px 0 10px 0px rgba(0, 0, 0, 0.20);
+        border-radius: 10px;
+        border-left: 1px #f2f2f2 solid;
+    }
+
+    .subheader-filter-heading {
+        padding: 15px;
+        border-bottom: 1px solid #ddbcc6;
+    }
+
+    .subheader-filter-heading h5 {
+        font-size: 22px;
+        font-weight: 600;
+        margin-block-start: 0 !important;
+        margin-block-end: 0 !important;
+        color: #ec1e2b;
+    }
+
+    .subheader-locate {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .form-group .label-form {
+        border-bottom: 1px #ccc solid;
+        width: 100%;
+        font-size: 13px;
+        padding: 10px 0;
+        font-weight: 600;
+    }
+
+    .form-group {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .form-group select:focus {
+        outline: none;
+    }
+
+    .form-group select {
+        width: 350px;
+        color: #808080;
+        font-size: 13px;
+        padding: 10px 0;
+        border: 0;
+        border-bottom: 1px #ccc solid;
+    }
+
+    .border-top-ccc {
+        border-top: 1px #ccc solid;
+    }
+
+    .radio-group-filter {
+        width: 600px;
+        margin-left: 10px;
+    }
+
+    @media only screen and (max-width: 800px) {
+        .radio-group-filter {
+            width: 600px;
+        }
+    }
+
+    @media only screen and (min-width: 800px) {
+        .radio-group-filter {
+            width: 350px;
+        }
+    }
+
+    @media only screen and (min-width: 1200px) {
+        .radio-group-filter {
+            width: 350px;
+        }
+    }
+
+    .px-15 {
+        padding: 0 15px;
+    }
+
+    .mt-15 {
+        margin-top: 15px;
+    }
+
+    .label-radio {
+        width: 24px;
+        font-size: 12px;
+        border-radius: 100%;
+        height: 24px;
+        display: flex;
+        border: 1px #ccc solid;
+        cursor: pointer;
+        color: #808080;
+        font-weight: bold;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0;
+    }
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    input[type="radio"]:checked+label {
+        background: #8c1839;
+        color: white;
+    }
+
+    .radio-filter-element {
+        display: inline-block;
+        margin-right: 3px;
+        margin-top: 3px;
+    }
+
+    .form-last-group {
+        display: flex;
+        margin-left: 10px;
+    }
+
+    .form-last-group input {
+        width: 60px;
+        font-size: 13px;
+        color: #808080;
+        outline: none;
+        border: 0;
+        border-bottom: 1px #ccc solid;
+    }
+
+    .form-last-group select {
+        width: 60px;
+        color: #808080;
+        font-size: 13px;
+        border: 0;
+        border-bottom: 1px #ccc solid;
+    }
+
+    .form-last-group span {
+        font-size: 13px;
+        font-weight: 450;
+        align-items: center;
+        display: flex;
+        width: 30px;
+        justify-content: center;
+        text-align: center;
+        color: #808080;
+    }
+    .f-bold {
+        font-weight: bold;
+    }
+    .btn-search i{
+        font-weight: normal;
+        font-size: 16px;
+        padding-left: 8px;
+    }
+    .btn-search{
+        background: #8c1839;
+        color: white;
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        margin-top: 40px;
+        border: 0 !important;
+        outline: none !important;
+        cursor: pointer;
+        font-weight: 450;
+        border-radius: 0 0 10px 10px;
+    }
+</style>
+
+<body>
+    <section class="header">
+        <div class="container header-box px-15">
+            <button class="icon-back-header"><img src="assets/image/icon-back.png" /></button>
+            <div class="title-header">Filter</div>
+        </div>
+    </section>
+    <section class="sub-header px-15">
+        <div class="container">
+            <div class="subheader-filter">
+                <div class="subheader-filter-heading">
+                    <h5>Property Search</h5>
+                </div>
+                <div class="subheader-filter-body">
+                    <div class="subheader-locate">Pondok Indah</div>
+                </div>
+                <div class="px-15 mt-15">
+                    <div class="form-group border-top-ccc">
+                        <label class="label-form">Type</label>
+                        <select>
+                            <option>Select Type</option>
+                            <option>Option 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="label-form">Province</label>
+                        <select>
+                            <option>Select Province</option>
+                            <option>Option 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="label-form">City</label>
+                        <select>
+                            <option>Select City</option>
+                            <option>Option 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="label-form">Bedroom</label>
+                        <div class="radio-group-filter">
+                            <div class="radio-filter-element">
+                                <input type="radio" id="bedroom1" name="bedroom"><label for="bedroom1"
+                                    class="label-radio">1+</label>
+                            </div>
+                            <div class="radio-filter-element">
+                                <input type="radio" id="bedroom2" name="bedroom"><label for="bedroom2"
+                                    class="label-radio">2+</label>
+                            </div>
+                            <div class="radio-filter-element">
+                                <input type="radio" id="bedroom3" name="bedroom"><label for="bedroom3"
+                                    class="label-radio">3+</label>
+                            </div>
+                            <div class="radio-filter-element">
+                                <input type="radio" id="bedroom4" name="bedroom"><label for="bedroom4"
+                                    class="label-radio">4+</label>
+                            </div>
+                            <div class="radio-filter-element">
+                                <input type="radio" id="bedroom5" name="bedroom"><label for="bedroom5"
+                                    class="label-radio">5+</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="label-form">Bathroom</label>
+                        <div class="radio-group-filter">
+                            <div class="radio-filter-element">
+                                <input type="radio" id="bathroom1" name="bathroom"><label for="bathroom1"
+                                    class="label-radio">1+</label>
+                            </div>
+                            <div class="radio-filter-element">
+                                <input type="radio" id="bathroom2" name="bathroom"><label for="bathroom2"
+                                    class="label-radio">2+</label>
+                            </div>
+                            <div class="radio-filter-element">
+                                <input type="radio" id="bathroom3" name="bathroom"><label for="bathroom3"
+                                    class="label-radio">3+</label>
+                            </div>
+                            <div class="radio-filter-element">
+                                <input type="radio" id="bathroom4" name="bathroom"><label for="bathroom4"
+                                    class="label-radio">4+</label>
+                            </div>
+                            <div class="radio-filter-element">
+                                <input type="radio" id="bathroom5" name="bathroom"><label for="bathroom5"
+                                    class="label-radio">5+</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="label-form">Price Range</label>
+                        <div class="form-last-group">
+                            <select class="f-bold">
+                                <option>10JT</option>
+                                <option>20JT</option>
+                            </select>
+                            <span>to</span>
+                            <select class="f-bold">
+                                <option>1T</option>
+                                <option>2T</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="label-form">Land Area (LT)</label>
+                        <div class="form-last-group">
+                            <input type="text">
+                            <span>to</span>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="label-form">Building Area (LT)</label>
+                        <div class="form-last-group">
+                            <input type="text">
+                            <span>to</span>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="label-form">Wind Direction</label>
+                        <div class="form-last-group">
+                            <select style="width:150px !important;">
+                                <option>Select Direction</option>
+                                <option>Option2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="label-form">Certificate</label>
+                        <div class="form-last-group">
+                            <select style="width:150px !important;">
+                                <option>Select Certificate</option>
+                                <option>Option2</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-search">SEARCH <i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
