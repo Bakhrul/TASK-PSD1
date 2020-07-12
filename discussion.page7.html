@@ -260,46 +260,6 @@
             height: 60px;
         }
     }
-    .footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 60px;
-        background: white;
-        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.20);
-        border-radius: 50px 50px 0 0;
-        padding: 15px 0;
-    }
-
-    .footer-group {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 100%;
-    }
-
-    .footer-group .footer-elemet {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        background: transparent !important;
-        border: 0 !important;
-        outline: none !important;
-    }
-
-    .footer-group .footer-elemet img {
-        width: 20px;
-        height: 20px;
-    }
-
-    .footer-group .footer-elemet .text-footer {
-        color: #90a5b6;
-        font-size: 13px;
-        font-weight: normal;
-        padding-top: 10px;
-    }
     .floating-button i{
         font-size: 24px;
         font-weight: normal !important;
@@ -356,6 +316,7 @@
                             <i class="fa fa-eye"></i><span>300</span>
                         </div>
                     </div>
+                    <!-- start looping -->
                     <div class="discussion-element p-relative">
                         <div class="discussion-notif">1</div>
                         <div class="discussion-body">
@@ -373,6 +334,7 @@
                             <i class="fa fa-eye"></i><span>300</span>
                         </div>
                     </div>
+                    <!-- start looping -->
                     <div class="discussion-element p-relative">
                         <div class="discussion-notif">1</div>
                         <div class="discussion-body">
@@ -395,30 +357,6 @@
         </div>
     </section>
     <button class="floating-button"><i class="fa fa-plus"></i></button>
-    <section class="footer">
-        <div class="container footer-group">
-            <button class="footer-elemet">
-                <img src="assets/image/icon-save.png">
-                <div class="text-footer">Saved</div>
-            </button>
-            <button class="footer-elemet">
-                <img src="assets/image/icon-news.png">
-                <div class="text-footer">News</div>
-            </button>
-            <button class="footer-elemet">
-                <img src="assets/image/icon-home.png">
-                <div class="text-footer">Home</div>
-            </button>
-            <button class="footer-elemet">
-                <img src="assets/image/icon-chats.png">
-                <div class="text-footer">Chats</div>
-            </button>
-            <button class="footer-elemet">
-                <img src="assets/image/icon-profile.png">
-                <div class="text-footer">Profile</div>
-            </button>
-        </div>
-    </section>
     <script>
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks, borderheader;
