@@ -8,13 +8,13 @@
 </head>
 <style>
     @font-face {
-        font-family: Helvetica Neue;
-        src: url(assets/fonts/HelveticaNeueMed.ttf);
+        font-family: Helvetica;
+        src: url(assets/fonts/Helvetica.ttf);
     }
 
     body {
         margin: 0 !important;
-        font-family: Helvetica Neue, Helvetica, Arial, sans-serif !important;
+        font-family: Helvetica;
         background-color: #f2f2f2;
         padding-bottom: 8em;
     }
@@ -33,12 +33,9 @@
     .property-content-group {
         padding: 15px;
     }
-
-    .row::before,
-    .row::after {
-        display: table;
-        content: " ";
-        clear: both;
+    .row{
+        display: flex;
+        flex-wrap: wrap;
     }
 
     .sm-one,
@@ -215,7 +212,6 @@
         padding: 30px 20px;
         color: #3e3e3d;
         animation: fadeEffect 1s;
-        font-family: Lato;
         font-size: 18px;
         font-weight: 400;
     }
@@ -283,9 +279,9 @@
     }
 
     .sub-sorting-element .text-sorting {
-        font-size: 14px;
-        font-family: Helvetica Neue, Helvetica, Arial, sans-serif !important;
+        font-size: 14px;        
         color: #8c1839;
+        font-weight: 600;
     }
 
     .footer {
@@ -397,8 +393,7 @@
 
     .title-address-property {
         font-size: 13px;
-        font-weight: 450;
-        /* font-family: "Helvetica Neue"; */
+        font-weight: 450;        
     }
 
     .desc-address-property {
@@ -437,7 +432,7 @@
     }
 
     .property-premium-header button img {
-        width: 15px;
+        width: 10px;
         height: 20px;
     }
 
@@ -452,7 +447,6 @@
 
     .property-premium-header h5 {
         color: #ec1e2b;
-        font-family: "Helvetica Neue";
         margin-block-start: 0;
         margin-block-end: 0;
         font-size: 24px;
@@ -600,7 +594,8 @@
                             <h5 class="title-product-property">Rumah - Jakarta</h5>
                             <div class="price-product-property">IDR 11.500.000.000</div>
                             <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
-                            <div class="desc-address-property">Land Size (LT) 999 m2
+                            <div class="desc-address-property">
+                                Land Size (LT) 999 m2<br>
                                 Building Size (LB) 999 m2</div>
                         </div>
                     </div>
@@ -618,7 +613,7 @@
                             <h5 class="title-product-property">Rumah - Jakarta</h5>
                             <div class="price-product-property">IDR 11.500.000.000</div>
                             <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
-                            <div class="desc-address-property">Land Size (LT) 999 m2
+                            <div class="desc-address-property">Land Size (LT) 999 m2<br>
                                 Building Size (LB) 999 m2</div>
                         </div>
                     </div>
@@ -636,7 +631,7 @@
                             <h5 class="title-product-property">Rumah - Jakarta</h5>
                             <div class="price-product-property">IDR 11.500.000.000</div>
                             <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
-                            <div class="desc-address-property">Land Size (LT) 999 m2
+                            <div class="desc-address-property">Land Size (LT) 999 m2<br>
                                 Building Size (LB) 999 m2</div>
                         </div>
                     </div>
@@ -654,7 +649,7 @@
                             <h5 class="title-product-property">Rumah - Jakarta</h5>
                             <div class="price-product-property">IDR 11.500.000.000</div>
                             <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
-                            <div class="desc-address-property">Land Size (LT) 999 m2
+                            <div class="desc-address-property">Land Size (LT) 999 m2<br>
                                 Building Size (LB) 999 m2</div>
                         </div>
                     </div>
@@ -678,7 +673,7 @@
                             <h5 class="title-product-property">Rumah - Jakarta</h5>
                             <div class="price-product-property">IDR 11.500.000.000</div>
                             <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
-                            <div class="desc-address-property">Land Size (LT) 999 m2
+                            <div class="desc-address-property">Land Size (LT) 999 m2<br>
                                 Building Size (LB) 999 m2</div>
                         </div>
                     </div>
@@ -696,7 +691,7 @@
                             <h5 class="title-product-property">Rumah - Jakarta</h5>
                             <div class="price-product-property">IDR 11.500.000.000</div>
                             <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
-                            <div class="desc-address-property">Land Size (LT) 999 m2
+                            <div class="desc-address-property">Land Size (LT) 999 m2<br>
                                 Building Size (LB) 999 m2</div>
                         </div>
                     </div>
@@ -714,7 +709,7 @@
                             <h5 class="title-product-property">Rumah - Jakarta</h5>
                             <div class="price-product-property">IDR 11.500.000.000</div>
                             <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
-                            <div class="desc-address-property">Land Size (LT) 999 m2
+                            <div class="desc-address-property">Land Size (LT) 999 m2<br>
                                 Building Size (LB) 999 m2</div>
                         </div>
                     </div>
@@ -732,7 +727,7 @@
                             <h5 class="title-product-property">Rumah - Jakarta</h5>
                             <div class="price-product-property">IDR 11.500.000.000</div>
                             <div class="title-address-property">Jalan Sample, Jakarta Selatan</div>
-                            <div class="desc-address-property">Land Size (LT) 999 m2
+                            <div class="desc-address-property">Land Size (LT) 999 m2<br>
                                 Building Size (LB) 999 m2</div>
                         </div>
                     </div>

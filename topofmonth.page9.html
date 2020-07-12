@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <title>Top Of The Month</title>
+</head>
+<style>
+    @font-face {
+        font-family: Helvetica;
+        src: url(assets/fonts/Helvetica.ttf);
+    }
+
+    @font-face {
+        font-family: Lato;
+        src: url(assets/fonts/Lato-Regular.ttf);
+    }
+
+    @font-face {
+        font-family: Roboto;
+        src: url(assets/fonts/Roboto-Regular.ttf);
+    }
+
+    body {
+        margin: 0 !important;
+        font-family: Helvetica;
+        background-color: white;
+        margin-bottom: 150px !important;
+    }
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .header {
+        background-image: url("assets/image/bg-header.png");
+        height: 200px;
+        background-position: center center;
+        background-size: cover;
+        width: 100%;
+        border-radius: 0 0 30px 30px;
+
+        background-repeat: no-repeat;
+    }
+
+    .title-header {
+        color: white;
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    .header-box {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .icon-back-header img {
+        width: 10px;
+        margin-top: 5px;
+        height: 20px;
+        margin-right: 25px;
+    }
+
+    .icon-back-header {
+        background: transparent !important;
+        border: 0 !important;
+        outline: none !important;
+        cursor: pointer;
+    }
+
+    .primary-header {
+        display: flex;
+    }
+
+    .tab-header {
+        display: flex;
+        width: 100%;
+        border-radius: 40px;
+        margin-top: 30px;
+        box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.20);
+    }
+
+    .tab-header .tablinks:first-child {
+        border-radius: 40px 0 0 40px;
+    }
+
+    .tab-header .tablinks:last-child {
+        border-radius: 0 40px 40px 0;
+    }
+
+    .tab-header-active {
+        background: #c71f2f !important;
+        color: white !important;
+    }
+
+    .tab-header .tablinks {
+        background: white;
+        color: #c71f2f;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        outline: none;
+        font-weight: 600;
+        font-size: 14px;
+        width: 100%;
+        padding: 10px;
+    }
+
+    @keyframes fadeEffect {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .mt-15 {
+        margin-top: 15px;
+    }
+
+    .tabcontent {
+        animation: fadeEffect 1s;
+    }
+
+    .px-15 {
+        padding: 0 15px;
+    }
+
+    .date-top-month {
+        text-align: center;
+        font-size: 32px;
+        color: #c71f2f;
+        padding-top: 10px;
+        font-weight: bold;
+    }
+
+    .image-logo-box img {
+        width: 70px;
+        height: 85px;
+        display: block;
+        margin: auto;
+        margin-top: 25px;
+    }
+
+    .title-top-month {
+        color: #2C2563;
+        font-weight: bold !important;
+        text-align: center;
+        margin-block-start: 0 !important;
+        padding: 40px 0 10px 0;        
+        font-size: 34px;
+        letter-spacing: 5px;
+        margin-block-end: 0;
+    }
+
+    .top-member-broker-month-group {
+        background-color: #4449b3;
+        background-image: linear-gradient(to right, #00134d, #4449b3);
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        padding: 20px 15px;
+    }
+
+    .top-member-broker-month-group .image-top-member img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .top-member-broker-month-group .image-top-member {
+        width: 130px;
+        height: 130px;
+        border-radius: 100px;
+        background: #fafafa;
+    }
+
+    .region-top-member {
+        border-bottom: 1.5px #999999 solid;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        padding-bottom: 5px;
+        color: white;
+    }
+
+    .description-top-month {
+        width: 100%;
+        padding: 15px 15px 15px 30px;
+    }
+
+    .initial-top-member {
+        font-size: 24px;
+        color: white;
+        text-transform: uppercase;
+        margin-block-start: 0 !important;
+        font-weight: 600;
+        padding-top: 10px;
+        margin-block-end: 0 !important;
+    }
+
+    .name-top-member {
+        color: white;
+        opacity: 0.9;
+        font-size: 22px;
+        margin-block-start: 0 !important;
+        padding-top: 10px;
+        font-weight: 300;
+    }
+
+    @media only screen and (max-width: 450px) {
+        .region-top-member {
+            font-size: 16px;
+        }
+
+        .initial-top-member {
+            font-size: 20px;
+        }
+
+        .name-top-member {
+            font-size: 18px;
+        }
+
+        .top-member-broker-month-group .image-top-member {
+            width: 100px;
+            height: 100px;
+        }
+    }
+
+    @media only screen and (max-width:400px) {
+        .title-top-month {
+            font-size: 28px;
+        }
+    }
+
+    @media only screen and (max-width:360px) {
+        .region-top-member {
+            font-size: 14px;
+        }
+
+        .initial-top-member {
+            font-size: 18px;
+        }
+
+        .name-top-member {
+            font-size: 16px;
+        }
+
+        .description-top-month {
+            padding: 15px;
+        }
+    }
+
+    * {
+        box-sizing: border-box !important;
+    }
+
+    .row{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sm-one,
+    .sm-two,
+    .sm-thirds,
+    .sm-fourth,
+    .md-one,
+    .md-two,
+    .md-third,
+    .md-four,
+    .lg-one,
+    .lg-two,
+    .lg-four,
+    .lg-third {
+        width: 100%;
+    }
+
+    @keyframes fadeEffect {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media only screen and (max-width: 800px) {
+        .sm-one {
+            width: 100%;
+        }
+
+        .sm-two {
+            width: calc(100% / 2);
+        }
+
+        .sm-third {
+            width: calc(100% / 3 * 2);
+        }
+
+        .sm-fourth {
+            width: calc(100% / 4);
+        }
+
+        .column {
+            float: left;
+        }
+    }
+
+    @media only screen and (min-width: 800px) {
+        .md-one {
+            width: 100%;
+        }
+
+        .md-two {
+            width: calc(100% / 2);
+        }
+
+        .md-third {
+            width: calc(100% / 3);
+        }
+
+        .md-fourth {
+            width: calc(100% / 4);
+        }
+
+        .column {
+            float: left;
+        }
+
+    }
+
+    @media only screen and (min-width: 1200px) {
+        .lg-one {
+            width: 100%;
+        }
+
+        .lg-two {
+            width: calc(100% / 2);
+        }
+
+        .lg-third {
+            width: calc(100% / 3);
+        }
+
+        .lg-fourth {
+            width: calc(100% / 4);
+        }
+
+        .column {
+            float: left;
+        }
+    }
+
+    .image-list-person-box {
+        width: 120px;
+        height: 120px;
+        border-radius: 100px;
+        background: #fafafa;
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+    }
+
+    .image-list-person-box img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .place-list-person {
+        color: #2C2563;
+        font-weight: bold;
+        padding-bottom: 10px;
+        margin: 5px 0;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .era-list-person {
+        text-transform: uppercase;
+        color: #727272;
+        font-weight: 600;
+        padding-top: 10px;
+        font-size: 18px;
+        text-align: center;
+        margin-block-end: 0 !important;
+    }
+
+    .name-list-person {
+        margin-block-start: 0 !important;
+        text-align: center;
+        color: #727272;
+        font-size: 14px;
+        padding-top: 5px;
+        opacity: 0.8;
+        font-weight: normal !important;
+        text-transform: uppercase;
+    }
+
+    .list-person-group {
+        padding: 5px;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin: 30px 0;
+        justify-content: center;
+    }
+
+    .mt-15 {
+        margin-top: 15px;
+    }
+</style>
+
+<body>
+    <section class="header">
+        <div class="container header-box px-15">
+            <div class="primary-header">
+                <button class="icon-back-header"><img src="assets/image/icon-back.png" /></button>
+                <div class="title-header">Top of The Month</div>
+            </div>
+            <div class="tab-header">
+
+                <button class="tablinks" onclick="openTab(event, 'MemberBroker')" id="defaultOpen">Member
+                    Broker</button>
+
+                <button class="tablinks" onclick="openTab(event, 'MarketingAssociate')">Marketing Associate</button>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container mt-15">
+            <div id="MemberBroker" class="tabcontent">
+                <div class="date-top-month">
+                    November 2019
+                </div>
+                <div class="image-logo-box">
+                    <img src="assets/image/logo.png">
+                </div>
+                <h5 class="title-top-month">MEMBER BROKER</h5>
+                <div class="top-member-broker-month-group">
+                    <div>
+                        <div class="image-top-member">
+                            <img src="assets/image/icon_person.png">
+                        </div>
+                    </div>
+                    <div class="description-top-month">
+                        <div class="region-top-member">National</div>
+                        <h5 class="initial-top-member">ERA PRESTIGE</h5>
+                        <p class="name-top-member">NESYA ADITYA</p>
+                    </div>
+                </div>
+                <div class="row mt-15">
+                    <div class="lg-fourth md-third sm-two column">
+                        <div class="list-person-group">
+                            <div class="place-list-person">South Jakarta</div>
+                            <div class="image-list-person-box">
+                                <img src="assets/image/icon_person.png">
+                            </div>
+                            <h5 class="era-list-person">ERA PRESTIGE</h5>
+                            <p class="name-list-person">Neysa Arditya</p>
+                        </div>
+                    </div>
+                    <div class="lg-fourth md-third sm-two column">
+                        <div class="list-person-group">
+                            <div class="place-list-person">South Jakarta</div>
+                            <div class="image-list-person-box">
+                                <img src="assets/image/icon_person.png">
+                            </div>
+                            <h5 class="era-list-person">ERA PRESTIGE</h5>
+                            <p class="name-list-person">Neysa Arditya</p>
+                        </div>
+                    </div>
+                    <div class="lg-fourth md-third sm-two column">
+                        <div class="list-person-group">
+                            <div class="place-list-person">South Jakarta</div>
+                            <div class="image-list-person-box">
+                                <img src="assets/image/icon_person.png">
+                            </div>
+                            <h5 class="era-list-person">ERA PRESTIGE</h5>
+                            <p class="name-list-person">Neysa Arditya</p>
+                        </div>
+                    </div>
+                    <div class="lg-fourth md-third sm-two column">
+                        <div class="list-person-group">
+                            <div class="place-list-person">South Jakarta</div>
+                            <div class="image-list-person-box">
+                                <img src="assets/image/icon_person.png">
+                            </div>
+                            <h5 class="era-list-person">ERA PRESTIGE</h5>
+                            <p class="name-list-person">Neysa Arditya</p>
+                        </div>
+                    </div>
+                    <div class="lg-fourth md-third sm-two column">
+                        <div class="list-person-group">
+                            <div class="place-list-person">South Jakarta</div>
+                            <div class="image-list-person-box">
+                                <img src="assets/image/icon_person.png">
+                            </div>
+                            <h5 class="era-list-person">ERA PRESTIGE</h5>
+                            <p class="name-list-person">Neysa Arditya</p>
+                        </div>
+                    </div>                    
+                    <div class="lg-fourth md-third sm-two column">
+                        <div class="list-person-group">
+                            <div class="place-list-person">South Jakarta</div>
+                            <div class="image-list-person-box">
+                                <img src="assets/image/icon_person.png">
+                            </div>
+                            <h5 class="era-list-person">ERA PRESTIGE</h5>
+                            <p class="name-list-person">Neysa Arditya</p>
+                        </div>
+                    </div>                    
+                    <div class="lg-fourth md-third sm-two column">
+                        <div class="list-person-group">
+                            <div class="place-list-person">South Jakarta</div>
+                            <div class="image-list-person-box">
+                                <img src="assets/image/icon_person.png">
+                            </div>
+                            <h5 class="era-list-person">ERA PRESTIGE</h5>
+                            <p class="name-list-person">Neysa Arditya</p>
+                        </div>
+                    </div>                    
+                    <div class="lg-fourth md-third sm-two column">
+                        <div class="list-person-group">
+                            <div class="place-list-person">South Jakarta</div>
+                            <div class="image-list-person-box">
+                                <img src="assets/image/icon_person.png">
+                            </div>
+                            <h5 class="era-list-person">ERA PRESTIGE</h5>
+                            <p class="name-list-person">Neysa Arditya</p>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div id="MarketingAssociate" class="tabcontent">
+            </div>
+
+        </div>
+    </section>
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks, borderheader;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" tab-header-active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " tab-header-active";
+        }
+        document.getElementById("defaultOpen").click();
+    </script>
+</body>
+
+</html>
