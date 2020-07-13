@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discussion Create</title>
+</head>
+<style>
+    @font-face {
+        font-family: Helvetica;
+        src: url(assets/fonts/Helvetica.ttf);
+    }
+
+    @font-face {
+        font-family: Roboto;
+        src: url(assets/fonts/Roboto-Regular.ttf);
+    }
+
+    @font-face {
+        font-family: Lato;
+        src: url(assets/fonts/Lato-Regular.ttf);
+    }
+
+
+    body {
+        margin: 0 !important;
+        font-family: Helvetica;
+        background-color: #f2f2f2;
+        /* overflow-x: hidden; */
+        padding-bottom: 8em;
+    }
+
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .header {
+        background-image: url("assets/image/bg-header.png");
+        height: 320px;
+        background-position: center center;
+        background-size: cover;
+        width: 100%;
+        border-radius: 0 0 30px 30px;
+
+        background-repeat: no-repeat;
+    }
+
+    .title-header {
+        color: white;
+        font-size: 32px;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+
+    .header-box {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .header-heading {
+        display: flex;
+    }
+
+    .header-body {
+        display: flex;
+        margin-top: 20px;
+    }
+
+    .header-body .header-body-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 100px;
+        background: white;
+    }
+
+    .header-body .header-body-image img {
+        width: 100%;
+        height: 100%;
+        border-radius: 100px;
+    }
+
+    .header-body-description {
+        padding-left: 20px;
+    }
+
+    .header-body-description .title-description {
+        margin-block-start: 0 !important;
+        padding-top: 5px;
+        letter-spacing: 1px;
+        color: white;
+        font-weight: bold !important;
+        font-size: 22px;
+        text-transform: uppercase;
+        margin-block-end: 0 !important;
+    }
+
+    .header-body-description .nomor-description {
+        color: white;
+        font-weight: 600;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        font-size: 16px;
+        font-style: italic;
+        letter-spacing: 1px;
+        padding-top: 3px;
+        margin-block-start: 0;
+    }
+
+    .header-body-description .phone-description {
+        color: white;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        letter-spacing: 1px;
+        padding-top: 3px;
+        font-size: 16px;
+    }
+
+    .header-body-description .email-description {
+        padding-top: 3px;
+        color: white;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        font-size: 14px;
+        font-weight: normal;
+        overflow-wrap: anywhere;
+        letter-spacing: 1px;
+    }
+
+    .icon-back-header img {
+        width: 10px;
+        margin-top: 5px;
+        height: 20px;
+        margin-right: 25px;
+    }
+
+    .icon-back-header {
+        background: transparent !important;
+        border: 0 !important;
+        outline: none !important;
+        cursor: pointer;
+    }
+
+    .subheader-property {
+        position: relative;
+        padding: 25px 30px;
+        top: -35px;
+        border-left: 1px #f2f2f2 solid;
+        background-color: white;
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+        border-radius: 20px;
+    }
+
+    .height-100 {
+        height: 100%;
+    }
+
+    .person-career-box {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px #fde8eb solid;
+        padding-bottom: 10px;
+        width: 100%;
+    }
+
+    .person-career-box .image-career-box img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .person-career-box .image-career-box {
+        width: 40px;
+        height: 45px;
+    }
+
+    .person-career-box .title-career {
+        color: #8c1839;
+        font-family: Lato;
+        margin-block-end: 0;
+        margin-block-start: 0;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .person-career-box .description-career {
+        margin-block-start: 0;
+        color: #3e3e3d;
+        font-weight: bold !important;
+        padding-top: 8px;
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .person-achievment-box .title-achievment {
+        color: #8c1839;
+        font-family: Lato;
+        margin-block-end: 0;
+        padding-top: 20px;
+        margin-block-start: 0;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .person-achievment-box .description-achievment {
+        margin-block-start: 0;
+        color: #3e3e3d;
+        font-weight: bold !important;
+        padding-top: 8px;
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .listing-person-element {
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+        background: white;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .listing-person-element .listing-person-body {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .listing-person-element .title-listing {
+        color: #ec1e2b;
+        font-weight: bold;
+        font-size: 28px;
+        letter-spacing: 1px;
+        overflow-wrap: anywhere;
+        margin-block-start: 0 !important;
+        margin-block-end: 0 !important;
+    }
+
+    .listing-person-element .price-listing {
+        color: #ca2030;
+        letter-spacing: 1px;
+        overflow-wrap: anywhere;
+        padding-top: 5px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .listing-person-element .listing-person-image {
+        height: 180px;
+        border-radius: 10px;
+        width: 150px;
+        background: white;
+    }
+
+    .listing-person-element .listing-person-image img {
+        width: 100%;
+        border-radius: 10px;
+        height: 100%;
+    }
+
+    .listing-person-description {
+        padding: 5px 15px;
+    }
+
+    .listing-person-element .address-listing {
+        color: #3e3e3d;
+        font-size: 14px;
+        overflow-wrap: anywhere;
+        padding-top: 5px;
+        opacity: 0.8;
+    }
+
+    .listing-icon-group .listing-icon-element {
+        margin: 10px 0;
+    }
+
+    .listing-icon-group {
+        display: flex;
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .listing-icon-group .listing-icon-element span {
+        color: #737373;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .listing-icon-group .listing-icon-element {
+        margin-right: 5px;
+        display: flex;
+    }
+
+    .listing-icon-group .listing-icon-element img {
+        width: 25px;
+        margin-right: 5px;
+        height: 20px;
+    }
+
+    .listing-person-button-group {
+        margin-top: 20px;
+    }
+
+    .btn-primary {
+        background: #8c1839;
+        color: white;
+        padding: 8px 25px;
+        border: 0;
+        margin-right: 5px;
+        outline: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: 15px;
+    }
+
+    .btn-secondary {
+        font-size: 14px;
+        font-weight: 600;
+        background: #ec1e2b;
+        color: white;
+        margin: 10px 5px 10px 0;
+        padding: 8px 25px;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        border-radius: 15px;
+    }
+
+    @media only screen and (max-width: 467px) {
+        .header-body-description .title-description{
+            font-size: 20px;
+        }
+        .person-career-box .title-career{
+            font-size: 18px;
+        }
+        .person-career-box .description-career{
+            font-size: 16px;
+        }
+        .listing-person-element .title-listing {
+            font-size: 20px;
+        }
+
+        .listing-person-element .price-listing {
+            font-size: 16px;
+        }
+
+        .listing-person-element .address-listing {
+            font-size: 13px;
+        }
+
+        .listing-person-element .listing-person-image {
+            width: 130px;
+            height: 150px;
+        }
+
+        .listing-icon-group .listing-icon-element span {
+            font-size: 13px;
+        }
+
+        .listing-icon-group .listing-icon-element img {
+            width: 20px;
+            margin-right: 5px;
+            height: 15px;
+        }
+        .btn-primary{
+            padding: 8px 15px;
+            font-size: 13px;
+        }
+        .btn-secondary{
+            padding: 8px 15px;
+            font-size: 13px;
+        }
+    }
+    @media only screen and (max-width: 360px) {
+        .header-body-description .title-description{
+            font-size: 16px;
+        }
+        .listing-person-element .listing-person-image{
+            width: 100px;
+            height: 120px;
+        }
+        .listing-person-element .title-listing{
+            font-size: 17px;
+        }
+        .listing-person-element .price-listing{
+            font-size: 15px;
+        }
+        .btn-primary{
+            font-size: 12px;
+        }
+        .btn-secondary{
+            font-size: 12px;
+        }
+    }
+</style>
+
+<body>
+    <section class="header">
+        <div class="px-15 height-100">
+            <div class="container header-box">
+                <div class="header-heading">
+                    <button class="icon-back-header"><img src="assets/image/icon-back.png" /></button>
+                    <div class="title-header">View Listing</div>
+                </div>
+                <div class="header-body">
+                    <div>
+
+                        <div class="header-body-image">
+                            <img src="assets/image/icon_person.png">
+                        </div>
+                    </div>
+                    <div class="header-body-description">
+                        <h5 class="title-description">IGNATIUS RAYMOND
+                            GUNAWAN</h5>
+                        <p class="nomor-description">21435</p>
+                        <div class="phone-description">0817 070 0707</div>
+                        <div class="email-description">sampleemail@gmail.com</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sub-header px-15">
+        <div class="container">
+            <div class="subheader-property">
+                <div class="person-career-box">
+                    <div class="person-career-header">
+                        <h5 class="title-career">Career Path</h5>
+                        <p class="description-career">Senior Associate Director</p>
+                    </div>
+                    <div class="image-career-box">
+                        <img src="assets/image/logo.png">
+                    </div>
+                </div>
+                <div class="person-achievment-box">
+                    <div class="person-achievment-header">
+                        <h5 class="title-achievment">Lifetime Achievement</h5>
+                        <p class="description-achievment">Diamond Producer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="listing-person-group">
+                <!-- start looping -->
+                <div class="listing-person-element">
+                    <div class="listing-person-body">
+                        <div class="listing-person-description">
+                            <h5 class="title-listing">Rumah - Jakarta</h5>
+                            <div class="price-listing">IDR 11.500.000.000</div>
+                            <div class="address-listing">Melati Lestari Indah<br>
+                                Lebak Bulus, Cilandak, Jakarta Selatan</div>
+                            <div class="listing-icon-group">
+                                <div class="listing-icon-element">
+                                    <img src="assets/image/icon_bathroom.png">
+                                    <span>300</span>
+                                </div>
+                                <div class="listing-icon-element">
+                                    <img src="assets/image/icon_bedroom.png">
+                                    <span>300</span>
+                                </div>
+                                <div class="listing-icon-element">
+                                    <img src="assets/image/icon_eye.png">
+                                    <span>300</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="listing-person-image">
+                                <img src="assets/image/image_listing.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="listing-person-button-group">
+                        <button class="btn-primary">Edit</button>
+                        <button class="btn-primary">Download</button>
+                        <button class="btn-secondary">Re-Post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
