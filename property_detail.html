@@ -1,0 +1,2329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">    
+    <title>Document</title>
+</head>
+<style>
+    @font-face {
+        font-family: Helvetica;
+        src: url(assets/fonts/Helvetica.ttf);
+    }
+
+    body {
+        margin: 0 !important;
+        font-family: Helvetica;
+        background-color: #f2f2f2;
+        padding-bottom: 8em;
+    }
+
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sm-one,
+    .sm-two,
+    .sm-thirds,
+    .sm-fourth,
+    .md-one,
+    .md-two,
+    .md-third,
+    .md-four,
+    .lg-one,
+    .lg-two,
+    .lg-four,
+    .lg-third {
+        width: 100%;
+    }
+
+    @keyframes fadeEffect {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media only screen and (max-width: 800px) {
+        .sm-one {
+            width: 100%;
+        }
+
+        .sm-two {
+            width: calc(100% / 2);
+        }
+
+        .sm-third {
+            width: calc(100% / 3 * 2);
+        }
+
+        .sm-fourth {
+            width: calc(100% / 4);
+        }
+
+        .column {
+            float: left;
+        }
+    }
+
+    @media only screen and (min-width: 800px) {
+        .md-one {
+            width: 100%;
+        }
+
+        .md-two {
+            width: calc(100% / 2);
+        }
+
+        .md-third {
+            width: calc(100% / 3);
+        }
+
+        .md-fourth {
+            width: calc(100% / 4);
+        }
+
+        .column {
+            float: left;
+        }
+
+    }
+
+    @media only screen and (min-width: 1200px) {
+        .lg-one {
+            width: 100%;
+        }
+
+        .lg-two {
+            width: calc(100% / 2);
+        }
+
+        .lg-third {
+            width: calc(100% / 3);
+        }
+
+        .lg-fourth {
+            width: calc(100% / 4);
+        }
+
+        .column {
+            float: left;
+        }
+    }
+
+    .header {
+        height: 330px;
+        width: 100%;
+    }
+
+    .header img {
+        width: 100%;
+        height: 100%;
+        background-image: no-repeat;
+    }
+
+    .btn-back img {
+        width: 15px;
+        height: 25px;
+    }
+
+    .btn-back {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        z-index: 9999999;
+        background: transparent !important;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .sub-header {
+        position: relative;
+        top: -35px;
+        background: white;
+        border-radius: 20px;
+        border: 1px #fafafa solid !important;
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+        padding: 15px;
+    }
+
+    .px-15 {
+        padding: 0 15px;
+    }
+
+    .property-forsale {
+        background: #c71f2f !important;
+        padding: 7.5px 20px;
+        color: white;
+        border-radius: 10px;
+        text-transform: uppercase;
+        font-size: 14px;
+
+    }
+
+    .sub-header-body {
+        padding: 5px 15px;
+    }
+
+    .p-relative {
+        position: relative;
+    }
+
+    .c-content-property {
+        border: 1px solid #c71f2f;
+        background-color: #c71f2f;
+        color: #fff;
+        text-align: center;
+        font-size: 15px !important;
+        overflow-wrap: break-word;
+        width: 100px;
+        font-weight: 600;
+        border-radius: 10px 0 0 10px;
+        padding: 10px 5px;
+
+    }
+
+    .c-border-bottom-property {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-bottom: 10px solid transparent;
+        border-left: 25px solid #999997;
+        right: 0;
+        bottom: -10px;
+    }
+
+    .c-border-top-property {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-left: 25px solid #999997;
+        right: 0;
+        top: -10px;
+    }
+
+    .c-property-listing {
+        position: absolute;
+        float: right;
+        right: -26px;
+        top: 60px;
+    }
+
+    .price-property-sale {
+        color: #ca2030;
+        padding-top: 25px;
+        font-weight: bold;
+        padding-right: 60px;
+        overflow-wrap: break-word;
+        font-size: 26px;
+    }
+
+    .title-property-sale {
+        color: #000000;
+        font-weight: bold;
+        font-size: 22px;
+        opacity: 0.8;
+        padding-top: 5px;
+        overflow-wrap: anywhere;
+        margin-block-start: 0 !important;
+        margin-block-end: 0 !important;
+    }
+
+    .address-property-sale {
+        font-size: 14px;
+        color: #ec1e2b;
+        font-weight: 600;
+        opacity: 0.8;
+        margin-block-start: 0;
+        padding-top: 10px;
+    }
+
+    .sub-header-footer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .sub-header-list-element {
+        display: flex;
+    }
+
+    .sub-header-list-element img {
+        width: 25px;
+        margin-right: 5px;
+        height: 20px;
+    }
+
+    .sub-header-list-icon-group {
+        display: flex;
+        padding: 0 15px;
+        flex-wrap: wrap;
+    }
+
+    .sub-header-list-button {
+        display: flex;
+    }
+
+    .sub-header-list-button button img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .sub-header-list-icon-group .sub-header-list-element span {
+        color: #737373;
+        font-size: 15px;
+        font-weight: 600;
+
+    }
+
+    .sub-header-list-icon-group .sub-header-list-element {
+        margin: 5px 15px 5px 0;
+    }
+
+    .sub-header-list-button button {
+        background: white !important;
+        margin-right: 10px;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .sub-header-list-button button:last-child {
+        margin-right: 0;
+    }
+
+    .description-property-box {
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+        background: white;
+        border-radius: 20px;
+        padding: 25px 30px;
+    }
+
+    .description-property-box .title-description {
+        margin-block-start: 0;
+        font-size: 18px;
+        margin-block-end: 0;
+        padding-bottom: 15px;
+    }
+
+    .pr-15 {
+        padding-right: 15px;
+    }
+
+    .listing-description-property {
+        opacity: 0.8;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .title-description-second {
+        font-size: 16px;
+        padding-top: 20px;
+        color: #727272;
+        font-weight: 600;
+        opacity: 0.9;
+
+    }
+
+    .content-description-second {
+        opacity: 0.8;
+        margin-top: 20px;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .content-qrcode-group {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .content-qrcode-group .title-qrcode {
+        text-align: center;
+        margin-bottom: 0;
+        color: #565656;
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .content-qrcode-group .description-qrcode {
+        text-align: center;
+        margin-bottom: 0;
+        color: #565656;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .image-qrcode-box {
+        width: 150px;
+        height: 170px;
+    }
+
+    .image-qrcode-box img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .btn-calculate-property i {
+        font-weight: normal;
+        padding-left: 10px;
+    }
+
+    .btn-calculate-property {
+        background: #c71f2f;
+        color: white;
+        width: 100%;
+        border: 0;
+        outline: none;
+        border-radius: 10px;
+        width: 100%;
+        padding: 15px 5px;
+        margin-top: 30px;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+        margin-bottom: 20px;
+        outline: none;
+    }
+
+    .property-view-footer-group {
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+        background: white;
+        border-radius: 30px;
+    }
+
+    .calculate-property-group {
+        padding: 15px;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .image-brand-wrapper img {
+        width: auto;
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .image-brand-wrapper {
+        background: #f2f2f2;
+        padding: 10px 5px;
+        border-radius: 10px;
+        margin: 5px 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+    }
+
+    .mt-30 {
+        margin-top: 30px;
+    }
+
+    .property-footer-header {
+        background-color: #971837;
+        border-radius: 30px 30px 0 0;
+        background-image: linear-gradient(90deg, #971837 0, #c42032 100%);
+    }
+
+    .header-body-description {
+        padding-left: 20px;
+    }
+
+    .header-body {
+        display: flex;
+        padding: 40px 15px;
+        justify-content: center;
+    }
+
+    .header-body-description .title-description {
+        margin-block-start: 0 !important;
+        padding-top: 5px;
+        color: white;
+        font-weight: bold !important;
+        font-size: 22px;
+        text-transform: uppercase;
+        margin-block-end: 0 !important;
+    }
+
+    .header-body-description .nomor-description {
+        color: white;
+        font-weight: 600;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        font-size: 16px;
+        font-style: italic;
+        letter-spacing: 1px;
+        padding-top: 3px;
+        margin-block-start: 0;
+    }
+
+    .header-body-description .phone-description {
+        color: white;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        letter-spacing: 1px;
+        overflow-wrap: anywhere;
+        padding-top: 3px;
+        font-size: 16px;
+    }
+
+    .header-body-description .email-description {
+        padding-top: 3px;
+        color: white;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        font-size: 14px;
+        font-weight: normal;
+        overflow-wrap: anywhere;
+        letter-spacing: 1px;
+    }
+
+    .header-body .header-body-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 100px;
+        background: white;
+    }
+
+    .header-body .header-body-image img {
+        width: 100%;
+        height: 100%;
+        border-radius: 100px;
+    }
+
+    .button-group-person button img {
+        width: 20px;
+        margin-left: 10px;
+        height: 20px;
+    }
+
+    .button-group-person button:first-child {
+        border-radius: 30px 0 0 30px;
+        border-right: 1px #ca2030 solid;
+    }
+
+    .button-group-person button:last-child {
+        border-radius: 0 30px 30px 0;
+        border-left: 1px #ca2030 solid;
+    }
+
+    .button-group-person button {
+        cursor: pointer;
+        background: white;
+        display: flex;
+        padding: 7.5px 5px;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        font-weight: bold;
+        border: 0;
+        outline: none;
+        width: 100%;
+
+    }
+
+    .button-group-person {
+        display: flex;
+        justify-content: space-between;
+        border-radius: 30px;
+        width: 100%;
+        padding: 5px 0;
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+        background: white;
+        position: absolute;
+        top: -15px;
+    }
+
+    .text-primary {
+        color: #ca2030;
+    }
+
+    .text-green {
+        color: #50b864;
+    }
+
+    .image-footer-box img {
+        width: 40px;
+        height: 60px;
+    }
+
+    .image-footer-box {
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+        width: 80px;
+        border-radius: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80px;
+        background: white;
+    }
+
+    .property-footer-footing {
+        background: white;
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+        padding: 60px 30px;
+        border-radius: 0 0 30px 30px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .button-group-person-wrapper {
+        margin: 0 30px;
+    }
+
+    .property-footing-left {
+        display: flex;
+    }
+
+    .property-footing-left-desc {
+        padding: 5px 5px 5px 10px;
+    }
+
+    .property-footing-left-desc .title-era {
+        font-weight: 600;
+        color: #737373;
+        font-size: 24px;
+    }
+
+    .property-footing-left-desc .phone-era {
+        font-size: 16px;
+        color: #737373;
+        padding-top: 5px;
+    }
+
+    .property-footing-left-desc .email-era {
+        font-size: 16px;
+        color: #737373;
+        padding-top: 5px;
+        overflow-wrap: anywhere;
+    }
+
+    .btn-call-era img {
+        width: 15px;
+        height: 15px;
+        margin-left: 10px;
+    }
+
+    .btn-call-era span {
+        color: white;
+        font-weight: bold;
+    }
+
+    .btn-call-era {
+        background-color: #c42032;
+        padding: 10px 5px;
+        border: 0;
+        outline: none;
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 30px;
+        background-image: linear-gradient(90deg, #c42032 0, #971837 100%);
+
+    }
+
+    .image-qrcode-box-second img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .image-qrcode-box-second {
+        width: 140px;
+        height: 150px;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+
+    .title-qrcode {
+        text-align: center;
+        margin-bottom: 0;
+        color: #565656;
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .content-qrcode-second {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .description-property-qrcode {
+        display: flex;
+    }
+
+    .description-qrcode-second {
+        text-align: center;
+        margin-bottom: 0;
+        color: #565656;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .c-content-map img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .c-content-map button {
+        border: 0;
+        outline: none;
+        z-index: 99999;
+        background: white;
+    }
+
+    .c-content-map {
+        border: 1px solid white;
+        background-color: white;
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+        color: #fff;
+        text-align: center;
+        z-index: 99999;
+        font-size: 15px !important;
+        overflow-wrap: break-word;
+        width: 100px;
+        height: 40px;
+
+        font-weight: 600;
+        border-radius: 10px 0 0 10px;
+        padding: 10px 5px;
+
+    }
+
+    .c-border-bottom-map {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-bottom: 10px solid transparent;
+        border-left: 25px solid #999997;
+        right: 0;
+        bottom: -10px;
+    }
+
+    .c-border-top-map {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-left: 25px solid #999997;
+        right: 0;
+        top: -10px;
+    }
+
+    .c-map-listing {
+        position: absolute;
+        float: right;
+        right: -26px;
+        top: 60px;
+    }
+
+    @media only screen and (max-width: 567px) {
+        .content-qrcode-group .title-qrcode {
+            font-size: 12px;
+        }
+
+        .content-qrcode-group .description-qrcode {
+            font-size: 12px;
+        }
+
+        .image-qrcode-box {
+            width: 110px;
+            height: 120px;
+        }
+
+        .calculate-property-group {
+            padding: 0;
+            padding-left: 5px;
+        }
+
+        .btn-calculate-property {
+            font-size: 14px;
+            margin-top: 40px;
+        }
+
+        .header-body .header-body-image {
+            width: 90px;
+            height: 90px;
+        }
+
+        .header-body-description .title-description {
+            font-size: 18px;
+        }
+
+        .button-group-person-wrapper {
+            margin: 0 15px;
+        }
+
+        .button-group-person button {
+            font-size: 14px;
+        }
+
+        .button-group-person button img {
+            width: 15px;
+            height: 15px;
+            margin-left: 5px;
+        }
+
+        .image-footer-box {
+            width: 60px;
+            height: 60px;
+        }
+
+        .image-footer-box img {
+            width: 30px;
+            height: 40px;
+        }
+
+        .property-footing-left-desc .title-era {
+            font-size: 18px;
+        }
+
+        .property-footing-left-desc .email-era {
+            font-size: 14px;
+        }
+
+        .property-footing-left-desc .phone-era {
+            font-size: 14px;
+        }
+
+        .image-qrcode-box-second {
+            width: 90px;
+            height: 100px;
+        }
+
+        .content-qrcode-second .title-qrcode {
+            font-size: 12px;
+        }
+
+        .description-qrcode-second {
+            font-size: 12px;
+        }
+
+        .btn-call-era {
+            font-size: 13px;
+        }
+
+        .price-property-sale {
+            font-size: 22px;
+        }
+
+        .title-property-sale {
+            font-size: 18px;
+        }
+
+        .address-property-sale {
+            font-size: 13px;
+        }
+
+        .sub-header-list-element img {
+            width: 20px;
+            height: 15px;
+        }
+
+        .sub-header-list-icon-group .sub-header-list-element span {
+            font-size: 13px;
+        }
+
+        .sub-header-list-button button img {
+            width: 18px;
+            height: 18px;
+        }
+
+        .c-content-property {
+            font-size: 14px !important;
+        }
+
+        .listing-description-property {
+            font-size: 13px;
+        }
+
+        .title-description-second {
+            font-size: 15px;
+        }
+
+        .description-property-box .title-description {
+            font-size: 17px;
+        }
+
+        .content-description-second {
+            font-size: 13px;
+        }
+
+        .c-content-map img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .c-content-map {
+            width: 80px;
+            height: 30px;
+        }
+
+        .c-content-property {
+            width: 80px;
+        }
+
+        .property-footer-footing {
+            padding: 60px 15px;
+        }
+    }
+
+    @media only screen and (max-width: 467px) {
+        .property-forsale {
+            font-size: 12px;
+        }
+
+        .price-property-sale {
+            font-size: 18px;
+        }
+
+        .title-property-sale {
+            font-size: 16px;
+        }
+
+        .sub-header-list-button button img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .sub-header-list-element img {
+            width: 18px;
+            height: 13px;
+        }
+
+        .c-content-property {
+            width: 60px;
+            padding: 7px 5px;
+        }
+
+        .description-property-box .title-description {
+            font-size: 16px;
+        }
+
+        .c-content-map {
+            width: 60px;
+        }
+
+        .listing-description-property {
+            font-size: 12px;
+        }
+
+        .title-description-second {
+            font-size: 14px;
+        }
+
+        .content-description-second {
+            font-size: 12px;
+        }
+
+        .sub-header-body {
+            padding: 5px 0;
+        }
+
+        .sub-header-list-icon-group {
+            padding: 0 15px 0 0;
+        }
+
+        .description-property-box {
+            padding: 25px 15px;
+        }
+
+        .image-qrcode-box {
+            width: 80px;
+            height: 90px;
+        }
+
+        .btn-calculate-property {
+            font-size: 12px;
+        }
+
+        .image-brand-wrapper {
+            margin: 5px 2.5px;
+            padding: 5px;
+        }
+
+        .content-qrcode-group .title-qrcode {
+            font-size: 11px;
+        }
+
+        .content-qrcode-group .description-qrcode {
+            font-size: 11px;
+        }
+
+        .btn-calculate-property {
+            padding: 10px 5px;
+            margin-top: 50px;
+            margin-bottom: 10px;
+        }
+
+        .header-body-description .title-description {
+            font-size: 16px;
+        }
+
+        .header-body-description .phone-description {
+            font-size: 12px;
+        }
+
+        .header-body-description .email-description {
+            font-size: 12px;
+        }
+
+        .property-footing-left-desc .title-era {
+            font-size: 16px;
+        }
+
+        .property-footing-left-desc .phone-era {
+            font-size: 12px;
+        }
+
+        .property-footing-left-desc .email-era {
+            font-size: 12px;
+        }
+
+        .btn-call-era {
+            font-size: 12px;
+        }
+
+        .image-qrcode-box-second {
+            width: 70px;
+            height: 80px;
+        }
+
+        .description-qrcode-second {
+            font-size: 11px;
+        }
+
+        .content-qrcode-second .title-qrcode {
+            font-size: 11px;
+        }
+
+        .image-footer-box {
+            width: 50px;
+            height: 50px;
+        }
+
+        .image-footer-box img {
+            width: 20px;
+            height: 30px;
+        }
+
+        .button-group-person button {
+            font-size: 12px;
+        }
+
+        .button-group-person button img {
+            width: 13px;
+            height: 13px;
+        }
+
+        @media only screen and (max-width: 360px) {
+            .property-forsale {
+                padding: 5px 15px;
+            }
+
+            .c-content-property {
+                width: 50px;
+                padding: 7.5px;
+                font-size: 11px !important;
+            }
+
+            .price-property-sale {
+                font-size: 16px;
+                padding-right: 40px;
+            }
+
+            .title-property-sale {
+                font-size: 15px;
+            }
+
+            .address-property-sale {
+                font-size: 12px;
+            }
+
+            .sub-header-list-icon-group .sub-header-list-element span {
+                font-size: 12px !important;
+            }
+
+            .c-content-map {
+                width: 50px;
+            }
+
+            .title-description-second {
+                font-size: 13px;
+            }
+
+            .btn-calculate-property {
+                font-size: 11px;
+            }
+
+            .btn-calculate-property i {
+                padding-left: 5px;
+            }
+
+            .image-qrcode-box {
+                width: 70px;
+                height: 80px;
+            }
+
+            .header-body .header-body-image {
+                width: 70px;
+                height: 70px;
+            }
+
+            .header-body-description {
+                padding-left: 10px;
+            }
+
+            .header-body-description .nomor-description {
+                font-size: 13px;
+            }
+
+            .button-group-person button {
+                font-size: 11px;
+            }
+
+            .header-body-description .title-description {
+                font-size: 15px;
+            }
+
+            .property-footing-left-desc .title-era {
+                font-size: 15px;
+            }
+
+            .property-footing-left-desc .phone-era {
+                font-size: 11px;
+            }
+
+            .property-footing-left-desc .email-era {
+                font-size: 11px;
+            }
+
+            .btn-call-era {
+                font-size: 11px;
+            }
+
+            .btn-call-era img {
+                width: 10px;
+                height: 10px;
+                margin-left: 5px;
+            }
+
+            .image-qrcode-box-second {
+                width: 50px;
+                height: 60px;
+            }
+        }
+    }
+
+    .swipe {
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .swipe ul {
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    .swipe li div,
+    .swipe div div div {
+        padding: 50px 10px;
+        background: #1db1ff;
+        font-weight: bold;
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .swipe li img {
+        width: 100%;
+    }
+
+    .swipe li {
+        margin: 0;
+        padding: 0;
+    }
+
+    #slider2 li {
+        width: 230px;
+    }
+
+    #slider4 ul {
+        -webkit-transition: left 800ms ease-in 0;
+        -moz-transition: left 800ms ease-in 0;
+        -o-transition: left 800ms ease-in 0;
+        transition: left 800ms ease-in 0;
+    }
+
+    #pagenavi {
+        position: relative;
+        top: -50px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+    }
+
+    #pagenavi a {
+        display: inline-block;
+        width: 10px;
+        border-radius: 100px;
+        margin-right: 5px;
+        height: 10px;
+        background-color: white;
+    }
+
+    #pagenavi a.active {
+        background: red;
+        width: 30px;
+        border-radius: 10px;
+    }
+
+    .header .mySlides {
+        height: 330px;
+    }
+
+    @media only screen and (max-width: 800px) {
+        .header .mySlides {
+            height: 330px;
+        }
+
+        .header {
+            height: 330px;
+        }
+    }
+
+    @media only screen and (min-width: 800px) {
+        .header .mySlides {
+            height: 400px;
+        }
+
+        .header {
+            height: 400px;
+        }
+    }
+
+    @media only screen and (min-width: 1200px) {
+        .header .mySlides {
+            height: 400px;
+        }
+
+        .header {
+            height: 400px;
+        }
+    }
+</style>
+
+<body>
+    <section class="header">
+        <button class="btn btn-back"><img src="assets/image/icon_back_red.png"></button>
+        <div class="swipe">
+            <ul id="slider4">
+                <!-- looping gambar -->
+                <li style="display:block"><img src="assets/image/image_property.png" class="mySlides"></li>
+                <li><img src="assets/image/image_property.png" class="mySlides"></li>
+                <li><img src="assets/image/image_property.png" class="mySlides"></li>
+                <li><img src="assets/image/image_property.png" class="mySlides"></li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        
+        <div id="pagenavi">
+            <!-- looping paginate -->
+            <a href="#" class="active"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+        </div>
+    </section>
+    <section class="px-15">
+        <div class="container">
+            <div class="sub-header p-relative">
+                <div class="c-property-listing p-relative">
+                    <div class="c-border-top-property"></div>
+                    <div class="c-content-property">E0001</div>
+                    <div class="c-border-bottom-property"></div>
+                </div>
+                <div class="sub-header-body">
+                    <span class="property-forsale">For Sale</span>
+                    <div class="price-property-sale">IDR11.500.000.000IDR11.500.000.000IDR11.500.000.000</div>
+                    <h5 class="title-property-sale">Rumah - Jakarta</h5>
+                    <p class="address-property-sale">Melati Lestari Indah<br>Lebak Bulus, Cilandak, Jakarta Selatan</p>
+                </div>
+                <div class="sub-header-footer">
+                    <div class="sub-header-list-icon-group">
+                        <div class="sub-header-list-element">
+                            <img src="assets/image/icon_bathroom.png">
+                            <span>300</span>
+                        </div>
+                        <div class="sub-header-list-element">
+                            <img src="assets/image/icon_bedroom.png">
+                            <span>300</span>
+                        </div>
+                        <div class="sub-header-list-element">
+                            <img src="assets/image/icon_eye.png">
+                            <span>300</span>
+                        </div>
+                    </div>
+                    <div class="sub-header-list-button">
+                        <button><img src="assets/image/icon-save-active.png"></button>
+                        <button><img src="assets/image/icon_share.png"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="px-15">
+        <div class="container">
+            <div class="description-property-box p-relative">
+                <div class="c-map-listing p-relative">
+                    <div class="c-border-top-map"></div>
+                    <div class="c-content-map"><button><img src="assets/image/icon_map.png"></button></div>
+                    <div class="c-border-bottom-map"></div>
+                </div>
+                <h5 class="title-description">Property Details</h5>
+                <table class="listing-description-property">
+                    <tbody>
+                        <tr>
+                            <td class="pr-15">Tipe Properti</td>
+                            <td>RUMAH</td>
+                        </tr>
+                        <tr>
+                            <td class="pr-15">Luas Tanah</td>
+                            <td>250 m2</td>
+                        </tr>
+                        <tr>
+                            <td class="pr-15">Luas Bangunan</td>
+                            <td>300 m2</td>
+                        </tr>
+                        <tr>
+                            <td class="pr-15">Kamar Tidur</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td class="pr-15">Kamar Mandi </td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td class="pr-15">Garasi</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td class="pr-15">Jumlah Lantai</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td class="pr-15">Kamar Pembantu</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td class="pr-15">Daya Listrik</td>
+                            <td>5.500 watt</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="title-description-second">Deskripsi</div>
+                <div class="content-description-second">Bebas Banjir<br>Dekat Sekolah<br>Dekat RD</div>
+                <div class="description-property-qrcode">
+                    <div class="content-qrcode-group">
+                        <div class="title-qrcode">QR Code Listing</div>
+                        <div class="image-qrcode-box"><img src="assets/image/image_qr.png"></div>
+                        <a href="javascript:void(0)" class="description-qrcode">Download QR Code</a>
+                    </div>
+                    <div class="calculate-property-group">
+
+                        <button class="btn btn-calculate-property">Mortgage Calculator<i
+                                class="fa fa-calculator"></i></button>
+                        <div class="row">
+                            <div class="lg-third md-two sm-two column">
+                                <div class="image-brand-wrapper"><img src="assets/image/image_brand.png"></div>
+                            </div>
+                            <div class="lg-third md-two sm-two column">
+                                <div class="image-brand-wrapper"><img src="assets/image/image_brand1.png"></div>
+                            </div>
+                            <div class="lg-third md-two sm-two column">
+                                <div class="image-brand-wrapper"><img src="assets/image/image_brand2.png"></div>
+                            </div>
+                            <div class="lg-third md-two sm-two column">
+                                <div class="image-brand-wrapper"><img src="assets/image/image_brand.png"></div>
+                            </div>
+                            <div class="lg-third md-two sm-two column">
+                                <div class="image-brand-wrapper"><img src="assets/image/image_brand1.png"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="px-15 mt-30">
+        <div class="container ">
+            <div class="property-view-footer-group">
+                <div class="property-footer-header">
+                    <div class="header-body">
+                        <div>
+                            <div class="header-body-image">
+                                <img src="assets/image/icon_person.png">
+                            </div>
+                        </div>
+                        <div class="header-body-description">
+                            <h5 class="title-description">IGNATIUS RAYMOND
+                                GUNAWAN</h5>
+                            <p class="nomor-description">21435</p>
+                            <div class="phone-description">0817 070 0707</div>
+                            <div class="email-description">sampleemail@gmail.com</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-relative button-group-person-wrapper">
+                <div class="button-group-person">
+                    <button class="text-primary"><span>Call</span><img src="assets/image/icon_call.png"></button>
+                    <button class="text-green"><span>Whatsapp</span><img src="assets/image/icon_whatsapp.png"></button>
+                    <button class="text-primary"><span>Chat</span><img src="assets/image/icon_chats_red.png"></button>
+                </div>
+            </div>
+            <div class="property-footer-footing">
+                <div class="property-footing-left">
+                    <div class="d-flex">
+                        <div>
+                            <div class="image-footer-box">
+                                <img src="assets/image/logo.png">
+                            </div>
+                        </div>
+                        <div class="property-footing-left-desc">
+                            <div class="title-era">ERA GRAHA</div>
+                            <div class="phone-era">(021) 707 7070</div>
+                            <div class="email-era">eragrahasample@gmail.com</div>
+                            <button class="btn-call-era"><span>Call Office</span><img
+                                    src="assets/image/icon_call_white.png"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-qrcode-second">
+                    <div class="title-qrcode">QR Code Agent</div>
+                    <div class="image-qrcode-box-second"><img src="assets/image/image_qr.png"></div>
+                    <a href="javascript:void(0)" class="description-qrcode-second">Download QR Code</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section>
+    </section>
+    <script>
+        (function (ROOT, struct, undefined) {
+            "use strict";
+
+            var lastTime = 0,
+                nextFrame =
+                ROOT.requestAnimationFrame ||
+                ROOT.webkitRequestAnimationFrame ||
+                ROOT.mozRequestAnimationFrame ||
+                ROOT.msRequestAnimationFrame ||
+                function (callback) {
+                    var currTime = +new Date(),
+                        delay = Math.max(
+                            1000 / 60,
+                            1000 / 60 - (currTime - lastTime)
+                        );
+                    lastTime = currTime + delay;
+                    return setTimeout(callback, delay);
+                },
+                cancelFrame =
+                ROOT.cancelAnimationFrame ||
+                ROOT.webkitCancelAnimationFrame ||
+                ROOT.webkitCancelRequestAnimationFrame ||
+                ROOT.mozCancelRequestAnimationFrame ||
+                ROOT.msCancelRequestAnimationFrame ||
+                clearTimeout,
+                DOC = ROOT.document,
+                divstyle = DOC.createElement("div").style,
+                cssVendor = (function () {
+                    var tests = "-webkit- -moz- -o- -ms-".split(" "),
+                        prop;
+                    while ((prop = tests.shift())) {
+                        if (camelCase(prop + "transform") in divstyle) {
+                            return prop;
+                        }
+                    }
+                    return "";
+                })(),
+                transition = cssTest("transition"),
+                toString = Object.prototype.toString,
+                slice = [].slice,
+                class2type = {},
+                event2type = {},
+                event2code = {
+                    click: 4,
+                    dommousescroll: 5,
+                    keydown: 6,
+                    resize: 7
+                },
+                POINTERTYPES = {
+                    2: "touch",
+                    3: "pen",
+                    4: "mouse",
+                    pen: "pen"
+                },
+                STARTEVENT = [],
+                MOVEEVENT = [],
+                EVENT = (function () {
+                    var ret = {},
+                        states = {
+                            start: 1,
+                            down: 1,
+                            move: 2,
+                            end: 3,
+                            up: 3,
+                            cancel: 3
+                        };
+                    each("mouse touch pointer MSPointer-".split(" "), function (prefix) {
+                        var _prefix = /pointer/i.test(prefix) ? "pointer" : prefix;
+                        ret[_prefix] = ret[_prefix] || {};
+                        POINTERTYPES[_prefix] = _prefix;
+                        each(states, function (endfix, code) {
+                            var ev = camelCase(prefix + endfix);
+                            ret[_prefix][ev] = code;
+                            event2type[ev.toLowerCase()] = _prefix;
+                            event2code[ev.toLowerCase()] = code;
+                            if (code == 1) {
+                                STARTEVENT.push(ev);
+                            } else {
+                                MOVEEVENT.push(ev);
+                            }
+                        });
+                    });
+                    each(
+                        "otransitionend oTransitionEnd webkitTransitionEnd mozTransitionEnd MSTransitionEnd transitionend"
+                        .split(
+                            " "
+                        ),
+                        function (ev) {
+                            STARTEVENT.push(ev);
+                            event2code[ev.toLowerCase()] = 8;
+                        }
+                    );
+                    return ret;
+                })(),
+                POINTERS = {
+                    touch: {},
+                    pointer: {},
+                    mouse: {}
+                };
+
+            each(
+                "Boolean Number String Function Array Date RegExp Object Error".split(
+                    " "
+                ),
+                function (name) {
+                    class2type["[object " + name + "]"] = name.toLowerCase();
+                }
+            );
+
+            function type(obj) {
+                if (obj == null) {
+                    return obj + "";
+                }
+
+                return typeof obj == "object" || typeof obj == "function" ?
+                    class2type[toString.call(obj)] || "object" :
+                    typeof obj;
+            }
+
+            function isArrayLike(elem) {
+                var tp = type(elem);
+                return (
+                    !!elem &&
+                    tp != "function" &&
+                    tp != "string" &&
+                    (elem.length === 0 ||
+                        (elem.length &&
+                            (elem.nodeType == 1 || elem.length - 1 in elem)))
+                );
+            }
+
+            function camelCase(str) {
+                return (str + "")
+                    .replace(/^-ms-/, "ms-")
+                    .replace(/-([a-z]|[0-9])/gi, function (all, letter) {
+                        return (letter + "").toUpperCase();
+                    });
+            }
+
+            function cssTest(name) {
+                var prop = camelCase(name),
+                    _prop = camelCase(cssVendor + prop);
+                return (prop in divstyle && prop) || (_prop in divstyle && _prop) || "";
+            }
+
+            function isFunction(func) {
+                return type(func) == "function";
+            }
+
+            function pointerLength(obj) {
+                var len = 0,
+                    key;
+                if (type(obj.length) == "number") {
+                    len = obj.length;
+                } else if ("keys" in Object) {
+                    len = Object.keys(obj).length;
+                } else {
+                    for (key in obj) {
+                        if (obj.hasOwnProperty(key)) {
+                            len++;
+                        }
+                    }
+                }
+                return len;
+            }
+
+            function pointerItem(obj, n) {
+                return "item" in obj ?
+                    obj.item(n) :
+                    function () {
+                        var i = 0,
+                            key;
+                        for (key in this) {
+                            if (i++ == n) {
+                                return this[key];
+                            }
+                        }
+                    }.call(obj, n);
+            }
+
+            function each(arr, iterate) {
+                if (isArrayLike(arr)) {
+                    if (type(arr.forEach) == "function") {
+                        return arr.forEach(iterate);
+                    }
+                    var i = 0,
+                        len = arr.length,
+                        item;
+                    for (; i < len; i++) {
+                        item = arr[i];
+                        if (type(item) != "undefined") {
+                            iterate(item, i, arr);
+                        }
+                    }
+                } else {
+                    var key;
+                    for (key in arr) {
+                        iterate(key, arr[key], arr);
+                    }
+                }
+            }
+
+            function children(elem) {
+                var ret = [];
+                each(elem.children || elem.childNodes, function (elem) {
+                    if (elem.nodeType == 1) {
+                        ret.push(elem);
+                    }
+                });
+                return ret;
+            }
+
+            function getStyle(elem, prop) {
+                var style =
+                    (ROOT.getComputedStyle && ROOT.getComputedStyle(elem, null)) ||
+                    elem.currentStyle ||
+                    elem.style;
+                return style[prop];
+            }
+
+            function setStyle(elem, props) {
+                each(props, function (name, value) {
+                    var prop;
+                    switch (name) {
+                        case "float":
+                            prop = cssTest("cssFloat") ? "cssFloat" : "styleFloat";
+                            break;
+                        default:
+                            prop = camelCase(name);
+                    }
+                    try {
+                        elem.style[prop] = value;
+                    } catch (e) {}
+                });
+            }
+
+            function addListener(elem, evstr, handler) {
+                if (type(evstr) == "object") {
+                    return each(evstr, function (evstr, handler) {
+                        addListener(elem, evstr, handler);
+                    });
+                }
+                each(evstr.split(" "), function (ev) {
+                    if (elem.addEventListener) {
+                        elem.addEventListener(ev, handler, false);
+                    } else if (elem.attachEvent) {
+                        elem.attachEvent("on" + ev, handler);
+                    } else elem["on" + ev] = handler;
+                });
+            }
+
+            function offListener(elem, evstr, handler) {
+                if (type(evstr) == "object") {
+                    return each(evstr, function (evstr, handler) {
+                        offListener(elem, evstr, handler);
+                    });
+                }
+                each(evstr.split(" "), function (ev) {
+                    if (elem.removeEventListener) {
+                        elem.removeEventListener(ev, handler, false);
+                    } else if (elem.detachEvent) {
+                        elem.detachEvent("on" + ev, handler);
+                    } else elem["on" + ev] = null;
+                });
+            }
+
+            function removeRange() {
+                var range;
+                if (ROOT.getSelection) {
+                    range = getSelection();
+                    if ("empty" in range) range.empty();
+                    else if ("removeAllRanges" in range) range.removeAllRanges();
+                } else {
+                    DOC.selection.empty();
+                }
+            }
+
+            function EASE(t, b, c, d) {
+                return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+            }
+
+            function filterEvent(oldEvent) {
+                var ev = {},
+                    which = oldEvent.which,
+                    button = oldEvent.button,
+                    pointers,
+                    pointer;
+
+                each("wheelDelta detail which keyCode".split(" "), function (prop) {
+                    ev[prop] = oldEvent[prop];
+                });
+
+                ev.oldEvent = oldEvent;
+
+                ev.type = oldEvent.type.toLowerCase();
+                ev.eventType = event2type[ev.type] || ev.type;
+                ev.eventCode = event2code[ev.type] || 0;
+                ev.pointerType =
+                    POINTERTYPES[oldEvent.pointerType] ||
+                    oldEvent.pointerType ||
+                    ev.eventType;
+
+                ev.target =
+                    oldEvent.target || oldEvent.srcElement || DOC.documentElement;
+                if (ev.target.nodeType === 3) {
+                    ev.target = ev.target.parentNode;
+                }
+
+                ev.preventDefault = function () {
+                    oldEvent.preventDefault && oldEvent.preventDefault();
+                    ev.returnValue = oldEvent.returnValue = false;
+                };
+
+                if ((pointers = POINTERS[ev.eventType])) {
+                    switch (ev.eventType) {
+                        case "mouse":
+                        case "pointer":
+                            var id = oldEvent.pointerId || 0;
+                            ev.eventCode == 3 ?
+                                delete pointers[id] :
+                                (pointers[id] = oldEvent);
+                            break;
+                        case "touch":
+                            POINTERS[ev.eventType] = pointers = oldEvent.touches;
+                            break;
+                    }
+
+                    if ((pointer = pointerItem(pointers, 0))) {
+                        ev.clientX = pointer.clientX;
+                        ev.clientY = pointer.clientY;
+                    }
+
+                    ev.button =
+                        which < 4 ?
+                        Math.max(0, which - 1) :
+                        (button & 4 && 1) || button & 2; // left:0 middle:1 right:2
+                    ev.length = pointerLength(pointers);
+                }
+
+                return ev;
+            }
+
+            struct.prototype = {
+                constructor: struct,
+                latestTime: 0,
+                init: function (config) {
+                    var self = this,
+                        handler = (this.handler = function (ev) {
+                            self.handleEvent(ev);
+                        });
+
+                    this.events = {};
+                    this.duration = isNaN(parseInt(config.duration)) ?
+                        600 :
+                        parseInt(config.duration);
+                    this.current = parseInt(config.start) || 0;
+                    this.mouse = config.mouse == null ? true : !!config.mouse;
+                    this.interval = parseInt(config.interval) || 5000;
+                    this.playing = config.autoplay == null ? true : !!config.autoplay;
+                    this.arrowkey = !!config.arrowkey;
+                    this.pages = children(this.container);
+                    this.length = this.pages.length;
+
+                    this.pageData = [];
+
+                    addListener(
+                        this.container,
+                        STARTEVENT.join(" ") + " click",
+                        handler
+                    );
+                    addListener(
+                        DOC,
+                        MOVEEVENT.join(" ") + (this.arrowkey ? " keydown" : ""),
+                        handler
+                    );
+                    addListener(ROOT, "resize", handler);
+
+                    each(this.pages, function (page) {
+                        self.pageData.push({
+                            cssText: page.style.cssText || ""
+                        });
+                    });
+                    this.pageData.container = this.container.style.cssText || "";
+
+                    this.on({
+                        before: function () {
+                            clearTimeout(this.playTimer);
+                        },
+                        dragStart: function () {
+                            clearTimeout(this.playTimer);
+                            removeRange();
+                        },
+                        after: this.firePlay
+                    }).firePlay();
+
+                    this.resize();
+                },
+                resize: function () {
+                    var self = this,
+                        pst = getStyle(this.container, "position"),
+                        css;
+
+                    this.size = this.getSize(
+                        (this.offsetParent =
+                            this.container[
+                                pst == "absolute" || pst == "fixed" ?
+                                "offsetParent" :
+                                "parentNode"
+                            ] || DOC.body)
+                    );
+
+                    css = {
+                        float: "left",
+                        display: "inline"
+                    };
+                    each(this.pages, function (page) {
+                        css["width"] =
+                            self.size -
+                            self.getMarginSize(page) -
+                            self.getPaddingSize(page) -
+                            self.getBorderSize(page) +
+                            "px";
+                        setStyle(page, css);
+                    });
+
+                    this.total = this.getSum(0, this.length);
+
+                    css = {};
+                    if (pst == "static") {
+                        css = {
+                            position: "relative"
+                        };
+                    }
+                    css[transition] = "none";
+                    css["width"] = this.total + "px";
+                    css["left"] = this.getPos(this.current) + "px";
+                    cancelFrame(this.timer);
+                    setStyle(this.container, css);
+
+                    clearTimeout(this.playTimer);
+
+                    return this.firePlay();
+                },
+                on: function (ev, callback) {
+                    var self = this;
+                    if (type(ev) == "object") {
+                        each(ev, function (ev, callback) {
+                            self.on(ev, callback);
+                        });
+                    } else {
+                        if (!this.events[ev]) {
+                            this.events[ev] = [];
+                        }
+                        this.events[ev].push(callback);
+                    }
+                    return this;
+                },
+                fire: function (ev) {
+                    var self = this,
+                        args = slice.call(arguments, 1);
+                    each(this.events[ev] || [], function (func) {
+                        if (isFunction(func)) {
+                            func.apply(self, args);
+                        }
+                    });
+                    return this;
+                },
+                isStatic: function () {
+                    return !this.timer && !this.drag;
+                },
+                prev: function () {
+                    return this.slide((this.current - 1 + this.length) % this.length);
+                },
+                next: function () {
+                    return this.slide((this.current + 1) % this.length);
+                },
+                play: function () {
+                    this.playing = true;
+                    return this.firePlay();
+                },
+                firePlay: function () {
+                    var self = this;
+                    if (this.playing) {
+                        this.playTimer = setTimeout(function () {
+                            self.next();
+                        }, this.interval);
+                    }
+                    return this;
+                },
+                pause: function () {
+                    this.playing = false;
+                    clearTimeout(this.playTimer);
+                    return this;
+                },
+                slide: function (_index) {
+                    var self = this,
+                        stime = +new Date(),
+                        duration = this.duration,
+                        current = this.current,
+                        index = Math.min(Math.max(0, _index), this.length - 1),
+                        curSize = this.getSum(index, index + 1),
+                        curPos = parseFloat(getStyle(this.container, "left")) || 0,
+                        css = {},
+                        tarPos;
+
+                    tarPos = this.getPos(index);
+                    duration *= Math.min(1, Math.abs(tarPos - curPos) / curSize) || 10;
+                    this.current = index;
+                    this.latestTime = stime + duration;
+                    this.fire("before", current, index);
+                    this.end = function () {
+                        delete self.timer;
+                        self.fire("after", index, current);
+                    };
+                    if (transition) {
+                        this.timer = 1;
+                        css[transition] = "left " + duration + "ms ease";
+                        css["left"] = tarPos + "px";
+                        setStyle(this.container, css);
+                    } else {
+                        cancelFrame(this.timer);
+                        ani();
+                    }
+
+                    function ani() {
+                        var offset = Math.min(duration, +new Date() - stime),
+                            s = EASE(offset, 0, 1, duration);
+                        cp = (tarPos - curPos) * s + curPos;
+                        self.container.style["left"] = cp + "px";
+                        if (offset == duration) {
+                            self.end();
+                        } else {
+                            self.timer = nextFrame(ani);
+                        }
+                    }
+                },
+                handleEvent: function (oldEvent) {
+                    var ev = filterEvent(oldEvent),
+                        canDrag =
+                        ev.button < 1 &&
+                        ev.length < 2 &&
+                        (!this.pointerType || this.pointerType == ev.eventType) &&
+                        (this.mouse || ev.pointerType != "mouse");
+
+                    switch (ev.eventCode) {
+                        case 2:
+                            if (canDrag && this.rect) {
+                                var index = this.current,
+                                    rect = [ev.clientX, ev.clientY],
+                                    _rect = this.rect,
+                                    offset = rect[0] - _rect[0];
+                                if (
+                                    this.drag == null &&
+                                    _rect.toString() != rect.toString()
+                                ) {
+                                    this.drag =
+                                        Math.abs(offset) >=
+                                        Math.abs(rect[1] - _rect[1]);
+                                    this.drag && this.fire("dragStart", ev);
+                                }
+                                if (this.drag) {
+                                    if (!this.pages[index + (offset > 0 ? -1 : 1)]) {
+                                        offset /= Math.abs(offset) / this.size + 2;
+                                    }
+                                    this.container.style["left"] =
+                                        this.startPos + offset + "px";
+                                    this.fire("dragMove", ev);
+                                    this._offset = offset;
+                                    ev.preventDefault();
+                                }
+                            }
+                            break;
+
+                        case 1:
+                        case 3:
+                            if (canDrag) {
+                                var self = this,
+                                    index = this.current,
+                                    isDrag,
+                                    offset,
+                                    tm,
+                                    nn,
+                                    sub,
+                                    curPos,
+                                    tarPos,
+                                    myWidth;
+                                if (ev.length && (ev.eventCode == 1 || this.drag)) {
+                                    nn = ev.target.nodeName.toLowerCase();
+                                    clearTimeout(this.eventTimer);
+                                    if (!this.pointerType) {
+                                        this.pointerType = ev.eventType;
+                                    }
+                                    this.startPos =
+                                        parseFloat(getStyle(this.container, "left")) ||
+                                        0;
+                                    if (transition) {
+                                        this.container.style[transition] = "none";
+                                    } else if (this.timer) {
+                                        cancelFrame(this.timer);
+                                        delete this.timer;
+                                    }
+                                    this.rect = [ev.clientX, ev.clientY];
+                                    this.time = +new Date();
+                                    this.container.style["left"] = this.startPos + "px";
+                                    if (
+                                        ev.eventType != "touch" &&
+                                        (nn == "a" || nn == "img")
+                                    ) {
+                                        ev.preventDefault();
+                                    }
+                                } else if ((tm = this.time)) {
+                                    offset = this._offset || 0;
+                                    isDrag = this.drag;
+                                    curPos = this.startPos + offset;
+                                    tarPos = this.getPos(index);
+
+                                    each(
+                                        "rect drag time startPos _offset".split(" "),
+                                        function (prop) {
+                                            delete self[prop];
+                                        }
+                                    );
+
+                                    if (isDrag) {
+                                        sub = offset > 0 ? 1 : -1;
+                                        while (
+                                            sub * (curPos - tarPos) >
+                                            this.getOuterSize(this.pages[index]) /
+                                            2 &&
+                                            this.pages[index - sub]
+                                        ) {
+                                            tarPos = this.getPos((index -= sub));
+                                        }
+
+                                        if (
+                                            Math.abs(offset) > 20 &&
+                                            +new Date() - tm < 500
+                                        ) {
+                                            index -= sub;
+                                        }
+
+                                        this.fire("dragEnd", ev);
+                                        ev.preventDefault();
+                                    }
+
+                                    if (curPos != tarPos) {
+                                        this.slide(index);
+                                    } else if (isDrag) {
+                                        this.firePlay();
+                                    }
+
+                                    this.eventTimer = setTimeout(function () {
+                                        delete self.pointerType;
+                                    }, 400);
+                                }
+                            }
+                            break;
+
+                        case 4:
+                            if (this.timer) {
+                                ev.preventDefault();
+                            }
+                            break;
+
+                        case 5:
+                            ev.preventDefault();
+                            if (
+                                this.isStatic() &&
+                                +new Date() - this.latestTime >
+                                Math.max(1000 - this.duration, 0)
+                            ) {
+                                var wd = ev.wheelDelta || -ev.detail;
+                                Math.abs(wd) >= 3 && this[wd > 0 ? "prev" : "next"]();
+                            }
+                            break;
+
+                        case 6:
+                            var nn = ev.target.nodeName.toLowerCase();
+                            if (
+                                this.isStatic() &&
+                                nn != "input" &&
+                                nn != "textarea" &&
+                                nn != "select"
+                            ) {
+                                switch (ev.keyCode || ev.which) {
+                                    case 33:
+                                    case 37:
+                                    case 38:
+                                        this.prev();
+                                        break;
+                                    case 32:
+                                    case 34:
+                                    case 39:
+                                    case 40:
+                                        this.next();
+                                        break;
+                                    case 35:
+                                        this.slide(this.length - 1);
+                                        break;
+                                    case 36:
+                                        this.slide(0);
+                                        break;
+                                }
+                            }
+                            break;
+
+                        case 7:
+                            this.resize();
+                            break;
+
+                        case 8:
+                            if (oldEvent.propertyName == "left") {
+                                this.container.style[transition] = "none";
+                                this.end();
+                            }
+                            break;
+                    }
+                },
+                getSum: function (from, to) {
+                    var sum = 0;
+                    while (from < to) {
+                        sum += this.getOuterSize(this.pages[from++], true);
+                    }
+                    return sum;
+                },
+                getPos: function (index) {
+                    var myWidth = this.getOuterSize(this.pages[index], true),
+                        sum =
+                        this.getSum(0, index) +
+                        this["getMarginLeftSize"](this.container) +
+                        this["getBorderLeftSize"](this.container);
+
+                    return -sum;
+                },
+                getOuterSize: function (elem, withMargin) {
+                    return (
+                        elem["offsetWidth"] +
+                        (withMargin ? this.getMarginSize(elem) : 0)
+                    );
+                },
+                getInnerSize: function (elem) {
+                    return this.getOuterSize(elem) - this.getBorderSize(elem);
+                },
+                getSize: function (elem) {
+                    return (
+                        elem["offsetWidth"] -
+                        this.getPaddingSize(elem) -
+                        this.getBorderSize(elem)
+                    );
+                },
+                destroy: function () {
+                    var pageData = this.pageData;
+
+                    offListener(
+                        this.container,
+                        STARTEVENT.join(" ") + " click",
+                        this.handler
+                    );
+                    offListener(
+                        DOC,
+                        MOVEEVENT.join(" ") + (this.arrowkey ? " keydown" : ""),
+                        this.handler
+                    );
+                    offListener(ROOT, "resize", this.handler);
+
+                    each(this.pages, function (page, index) {
+                        page.style.cssText = pageData[index].cssText;
+                    });
+
+                    this.container.style.cssText = pageData.container;
+                    this.container.removeChild(this.comment);
+                    this.length = 0;
+
+                    return this.pause();
+                },
+                refresh: function () {
+                    this.pages = children(this.container);
+                    this.length = this.pages.length;
+                    this.current = Math.max(Math.min(this.length - 1, this.current), 0);
+                    return this.resize();
+                },
+                append: function (elem, index) {
+                    if (null == index) {
+                        index = this.pages.length;
+                    }
+                    this.pageData.splice(index, 0, {
+                        cssText: elem.style.cssText || ""
+                    });
+                    this.container.insertBefore(elem, this.pages[index] || null);
+
+                    return this.refresh();
+                },
+                prepend: function (elem) {
+                    return this.append(elem, 0);
+                },
+                insertBefore: function (elem, index) {
+                    return this.append(elem, index - 1);
+                },
+                insertAfter: function (elem, index) {
+                    return this.append(elem, index + 1);
+                },
+                remove: function (index) {
+                    this.container.removeChild(this.pages[index]);
+                    this.pageData.splice(index, 1);
+
+                    return this.refresh();
+                }
+            };
+
+            each("margin padding border".split(" "), function (type) {
+                each("Top Left Right Bottom".split(" "), function (dir) {
+                    var prop = type + dir;
+                    struct.prototype[camelCase("get-" + prop) + "Size"] = function (
+                        elem
+                    ) {
+                        return (
+                            parseFloat(
+                                getStyle(elem, prop + (type == "border" ? "Width" : ""))
+                            ) || 0
+                        );
+                    };
+                });
+                struct.prototype[camelCase("get-" + type) + "Size"] = function (elem) {
+                    return (
+                        this[camelCase("get-" + type) + "Left" + "Size"](elem) +
+                        this[camelCase("get-" + type) + "Right" + "Size"](elem)
+                    );
+                };
+            });
+
+            if (typeof define == "function" && define.amd) {
+                define("TouchSlider", function () {
+                    return struct;
+                });
+            } else ROOT.TouchSlider = struct;
+        })(window, function (wrap, config) {
+            if (!(this instanceof arguments.callee)) {
+                return new arguments.callee(wrap, config);
+            }
+
+            this.container =
+                typeof wrap == "string" ? document.getElementById(wrap) : wrap;
+            this.init(config || {});
+        });
+
+        var thumbnails = document.querySelectorAll("#pagenavi a");
+
+        for (var i = 0; i < thumbnails.length; i++) {
+            var parent = document.getElementById("slider4");
+            var child = parent.querySelectorAll("li img");
+
+            // thumbnails[i].style.cssText =
+            //     "background: url(" +
+            //     child[i].src +
+            //     ") no-repeat center center; background-size: cover;";
+        }
+
+        var active = 0,
+            as = document.getElementById("pagenavi").getElementsByTagName("a");
+        for (var i = 0; i < as.length; i++) {
+            (function () {
+                var j = i;
+                as[i].onclick = function () {
+                    t4.slide(j);
+                    return false;
+                };
+            })();
+        }
+
+        var t4 = new TouchSlider("slider4", {
+            speed: 1000,
+            interval: 6000
+        });
+        t4.on("before", function (m, n) {
+            as[m].className = "";
+            as[n].className = "active";
+        });
+    </script>
+</body>
+
+</html>

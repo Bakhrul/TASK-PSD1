@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <title>Filter</title>
+</head>
+<style>
+    @font-face {
+        font-family: Helvetica;
+        src: url(assets/fonts/Helvetica.ttf);
+    }
+
+    @font-face {
+        font-family: Roboto;
+        src: url(assets/fonts/Roboto-Regular.ttf);
+    }
+
+    body {
+        margin: 0 !important;
+        font-family: Helvetica;
+        background-color: white;
+        padding-bottom: 8em;
+    }
+
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .header {
+        background-image: url("assets/image/bg-header.png");
+        height: 200px;
+        background-position: center center;
+        background-size: cover;
+        width: 100%;
+        border-radius: 0 0 30px 30px;
+
+        background-repeat: no-repeat;
+    }
+
+    .header-filter {
+        width: 100%;
+        background-color: white;
+        position: relative;
+        height: 40px;
+        z-index: 999;
+    }
+
+    .title-header {
+        color: white;
+        font-size: 32px;
+        font-weight: 600;
+    }
+
+    .header-box {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: row;
+        height: 100%;
+    }
+
+    .icon-back-header img {
+        width: 10px;
+        margin-top: 5px;
+        height: 20px;
+        margin-right: 25px;
+    }
+
+    .icon-back-header {
+        background: transparent !important;
+        border: 0 !important;
+        outline: none !important;
+        cursor: pointer;
+    }
+
+    .subheader-filter {
+        position: relative;
+        top: -35px;
+        padding: 15px 0 0 0;
+        background-color: white;
+        box-shadow: 10px 0 10px 0px rgba(0, 0, 0, 0.20);
+        border-radius: 10px;
+        border-left: 1px #f2f2f2 solid;
+    }
+
+    .subheader-filter-heading {
+        padding: 15px;
+        border-bottom: 1px solid #ddbcc6;
+    }
+
+    .subheader-filter-heading h5 {
+        font-size: 22px;
+        font-weight: 600;
+        margin-block-start: 0 !important;
+        margin-block-end: 0 !important;
+        color: #ec1e2b;
+    }
+
+    .subheader-locate {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .form-group .label-form {
+        border-bottom: 1px #ccc solid;
+        width: 100%;
+        font-size: 13px;
+        padding: 10px 0;
+        font-weight: 600;
+    }
+
+    .form-group {}
+
+    .form-group select:focus {
+        outline: none;
+    }
+
+    .form-group select {
+        width: 350px;
+        color: #808080;
+        font-size: 13px;
+        padding: 10px 0;
+        border: 0;
+        border-bottom: 1px #ccc solid;
+    }
+
+    .form-group .form-control {
+        color: #808080;
+        width: 100%;
+        font-size: 13px;
+        outline: none;
+        padding: 10px 0;
+        border: 0;
+        border-bottom: 1px #ccc solid;
+    }
+
+    .border-top-ccc {
+        border-top: 1px #ccc solid;
+    }
+
+    .radio-group-filter {
+        width: 600px;
+        margin-left: 10px;
+    }
+
+    @media only screen and (max-width: 800px) {
+        .radio-group-filter {
+            width: 600px;
+        }
+    }
+
+    @media only screen and (min-width: 800px) {
+        .radio-group-filter {
+            width: 350px;
+        }
+    }
+
+    @media only screen and (min-width: 1200px) {
+        .radio-group-filter {
+            width: 350px;
+        }
+    }
+
+    .px-15 {
+        padding: 0 15px;
+    }
+
+    .mt-15 {
+        margin-top: 15px;
+    }
+
+    .label-radio {
+        width: 24px;
+        font-size: 12px;
+        border-radius: 100%;
+        height: 24px;
+        display: flex;
+        border: 1px #ccc solid;
+        cursor: pointer;
+        color: #808080;
+        font-weight: bold;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0;
+    }
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    input[type="radio"]:checked+label {
+        background: #8c1839;
+        color: white;
+    }
+
+    .radio-filter-element {
+        display: inline-block;
+        margin-right: 3px;
+        margin-top: 3px;
+    }
+
+    .form-last-group {
+        display: flex;
+        margin-left: 10px;
+    }
+
+    .form-last-group input {
+        width: 60px;
+        font-size: 13px;
+        color: #808080;
+        outline: none;
+        border: 0;
+        border-bottom: 1px #ccc solid;
+    }
+
+    .form-last-group select {
+        width: 60px;
+        color: #808080;
+        font-size: 13px;
+        border: 0;
+        border-bottom: 1px #ccc solid;
+    }
+
+    .form-last-group span {
+        font-size: 13px;
+        font-weight: 450;
+        align-items: center;
+        display: flex;
+        width: 30px;
+        justify-content: center;
+        text-align: center;
+        color: #808080;
+    }
+
+    .f-bold {
+        font-weight: bold;
+    }
+
+    .btn-search i {
+        font-weight: normal;
+        font-size: 16px;
+        padding-left: 8px;
+    }
+
+    .btn-search {
+        background: #8c1839;
+        color: white;
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        margin-top: 40px;
+        border: 0 !important;
+        outline: none !important;
+        cursor: pointer;
+        font-weight: 450;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .pt-10 {
+        padding-top: 10px;
+    }
+
+    .mb-5 {
+        margin-bottom: 5px;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    .form-group-left {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .form-group-middle {
+        display: flex;
+    }
+
+    .form-middle-first {
+        margin-right: 10px;
+    }
+
+    .form-middle-last {
+        margin-left: 10px;
+    }
+
+    .border-0 {
+        border: 0 !important;
+    }
+
+    .btn-primary {
+        background: #c71f2f !important;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.20);
+        width: 95px;
+        outline: none;
+        height: 38px;
+        font-family: Roboto;
+    }
+
+    .form-group-button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 7.5px 0;
+    }
+
+    .btn-camera img {
+        width: 20px;
+        height: 15px;
+    }
+
+    .btn-camera {
+        background: #c71f2f !important;
+        width: 45px;
+        margin-right: 5px;
+        height: 38px;
+        border-radius: 5px;
+        border: 0;
+        cursor: pointer;
+        box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.20);
+        outline: none;
+    }
+
+    .form-group-button label {
+        font-weight: 600;
+        font-size: 13px;
+    }
+
+    .btn-add-video {
+        position: absolute;
+        right: 0;
+        top: 5px;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .p-relative {
+        position: relative;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked+.slider {
+        background-color: #ec1e2b !important;
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px #ec1e2b;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+    .form-group-toggle {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .form-group-toggle div {
+        margin-left: 10px;
+    }
+
+    .btn-set-location {
+        background: #c71f2f !important;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.20);
+        margin-top: 15px;
+        padding: 10px 15px;
+        outline: none;
+        font-family: Roboto;
+    }
+
+    .text-mute-form {
+        position: absolute;
+        right: 0;
+        color: #7d7d7d;
+        font-size: 14px;
+        bottom: 10px;
+    }
+
+    .text-form-length {
+        position: absolute;
+        color: #7d7d7d;
+        font-size: 12px;
+        right: 0;
+        bottom: 2px;
+    }
+
+    .custom-radio {
+        display: block;
+        position: relative;
+        padding-left: 27px;
+        margin-top: 10px;
+        font-weight: 500;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 14px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* Hide the browser's default radio button */
+    .custom-radio input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    /* Create a custom radio button */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 18px;
+        width: 18px;
+        background-color: white;
+        border: 1px black solid;
+        border-radius: 50%;
+    }
+
+    /* On mouse-over, add a grey background color */
+
+    /* When the radio button is checked, add a blue background */
+    .custom-radio input:checked~.checkmark {
+        background-color: white;
+        border: 1px #ec1e2b solid;
+    }
+
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the indicator (dot/circle) when checked */
+    .custom-radio input:checked~.checkmark:after {
+        display: block;
+    }
+
+    /* Style the indicator (dot/circle) */
+    .custom-radio .checkmark:after {
+        left: 2px;
+        top: 2px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #ec1e2b;
+    }
+
+    .ml-15 {
+        margin-left: 15px;
+    }
+
+    .mb-15 {
+        margin-bottom: 15px;
+    }
+    .input-currency-group{
+        position: relative;
+    top: 2px;
+    width: 100%;
+    margin-left: 30px;
+    }
+</style>
+
+<body>
+    <section class="header">
+        <div class="container header-box px-15">
+            <button class="icon-back-header"><img src="assets/image/icon-back.png" /></button>
+            <div class="title-header">Input Listing</div>
+        </div>
+    </section>
+    <section class="sub-header px-15">
+        <div class="container">
+            <div class="subheader-filter">
+                <div class="px-15 mt-15">
+                    <div class="form-group">
+                        <label class="label-form border-0">Listing Type</label>
+                        <div class="d-flex p-relative mb-15">
+                            <div>
+                                <label class="custom-radio">Sale
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="ml-15">
+                                <label class="custom-radio">Rent
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="label-form border-0">Address</label>
+                        <div class="mb-5">
+                            <div class="p-relative">
+                                <input type="text" class="form-control" id="input-jalan" onkeyup="InputLengthCheck()"
+                                    placeholder="Jalan" maxlength="35">
+                                <span class="text-form-length" id="template-length-jalan"></span>
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <div class="p-relative">
+                                <input type="text" class="form-control" id="input-blok" onkeyup="InputLengthCheck()"
+                                    placeholder="Blok" maxlength="6">
+                                <span class="text-form-length" id="template-length-blok">23</span>
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <div class="p-relative">
+                                <input type="text" class="form-control" id="input-rumah" onkeyup="InputLengthCheck()"
+                                    placeholder="No. Rumah" maxlength="9">
+                                <span class="text-form-length" id="template-length-rumah"></span>
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <input type="text" class="form-control" placeholder="RT/RW">
+                        </div>
+                    </div>
+                    <div class="form-group pt-10">
+                        <label class="label-form">Daerah</label>
+                        <div class="p-relative">
+                            <textarea class="form-control" rows="3" id="input-daerah" onkeyup="InputLengthCheck()"
+                                maxlength="30"></textarea>
+                            <span class="text-form-length" style="right: 5px !important; bottom: 10px !important;"
+                                id="template-length-daerah"></span>
+
+                        </div>
+
+                    </div>
+                    <div class="form-group form-group-left">
+                        <label class="label-form">Province</label>
+                        <select>
+                            <option>Select Province</option>
+                            <option>Option 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-left">
+                        <label class="label-form">City</label>
+                        <select>
+                            <option>Select City</option>
+                            <option>Option 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form">Bedroom</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <label class="label-form">Bathroom</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form border-0">Maid Bedroom</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <label class="label-form border-0">Maid Bathroom</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form border-0">Floor</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <label class="label-form border-0">Electric</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="form-group pt-10">
+                        <label class="label-form border-0">Price</label>
+                        <div class="d-flex">
+                            <div>
+                                <select class="form-control" style="width: 60px !important;">
+                                    <option>IDR</option>
+                                    <option>Option2</option>
+                                </select>
+                            </div>
+                            <div class="input-currency-group">
+                                <input type="text" class="form-control" placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form border-0">Land Area (LT) </label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" placeholder="0">
+                                <span class="text-mute-form">(sqm)</span>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <label class="label-form border-0">Building Area (LB)</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" placeholder="0">
+                                <span class="text-mute-form">(sqm)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form border-0">Garage</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <label class="label-form border-0">Car Port</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first pt-10">
+                            <div class="label-form w-100">
+                                Wind Direction
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <select class="form-control">
+                                <option>Select Direction</option>
+                                <option>Option 2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first pt-10">
+                            <div class="label-form w-100">
+                                Certificate
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <select class="form-control">
+                                <option>Select Certificate</option>
+                                <option>Option 2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-toggle pt-10">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <div>Share Location</div>
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form border-0">Latitude</label>
+                            <input type="text" class="form-control" placeholder="-6.2109607">
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <label class="label-form border-0">Longtitude</label>
+                            <input type="text" class="form-control" placeholder="106.8169652">
+                        </div>
+                    </div>
+                    <button class="btn btn-set-location">Set Location n Map</button>
+                    <div class="form-group-button">
+                        <label class="pt-10">Add Photos</label>
+                        <div class="d-flex pt-10">
+                            <button class="btn btn-camera"><img src="assets/image/icon_camera.png"></button>
+                            <button class="btn btn-primary">Select Photo</button>
+                        </div>
+                    </div>
+                    <div class="form-group pt-10">
+                        <label class="label-form border-0">Add Video</label>
+                        <div class="p-relative">
+                            <input type="text" class="form-control mt-15" placeholder="or paste video URL here">
+                            <button class="btn btn-primary btn-add-video">Add Video</button>
+                        </div>
+                    </div>
+                    <div class="form-group pt-10">
+                        <label class="label-form">Tagline</label>
+                        <textarea class="form-control" rows="4"></textarea>
+                    </div>
+                    <div class="form-group pt-10">
+                        <label class="label-form">Description</label>
+                        <textarea class="form-control" rows="4"></textarea>
+                    </div>
+                </div>
+                <button class="btn btn-search">SUBMIT</button>
+            </div>
+        </div>
+    </section>
+    <script>
+        InputLengthCheck()
+
+        function InputLengthCheck() {
+            //
+            let jalanInput = document.getElementById('input-jalan');
+            let jalanLength = jalanInput.value.length;
+            let JalanmaxLength = jalanInput.maxLength;
+            let renderTemplate = document.getElementById('template-length-jalan');
+            renderTemplate.innerHTML = jalanLength + "/" + JalanmaxLength;
+
+            //
+            let blokInput = document.getElementById('input-blok');
+            let blokLength = blokInput.value.length;
+            let blokmaxLength = blokInput.maxLength;
+            let renderTemplateBlok = document.getElementById('template-length-blok');
+            renderTemplateBlok.innerHTML = blokLength + "/" + blokmaxLength;
+
+            //
+            let rumahInput = document.getElementById('input-rumah');
+            let rumahLength = rumahInput.value.length;
+            let rumahmaxLength = rumahInput.maxLength;
+            let renderTemplateRumah = document.getElementById('template-length-rumah');
+            renderTemplateRumah.innerHTML = rumahLength + "/" + rumahmaxLength;
+
+            //
+            let daerahInput = document.getElementById('input-daerah');
+            let daerahLength = daerahInput.value.length;
+            let daerahmaxLength = daerahInput.maxLength;
+            let renderTemplateDaerah = document.getElementById('template-length-daerah');
+            renderTemplateDaerah.innerHTML = daerahLength + "/" + daerahmaxLength;
+        }
+    </script>
+</body>
+
+</html>
