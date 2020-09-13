@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<style>
+    @font-face {
+        font-family: Helvetica;
+        src: url(assets/fonts/Helvetica.ttf);
+    }
+
+    body {
+        margin: 0 !important;
+        font-family: Helvetica;
+        background-color: #f0f4f3;
+        padding-bottom: 8em;
+    }
+
+    .main-header {
+        background-color: #971837;
+        background-image: linear-gradient(90deg, #971837 0, #c42032 100%);
+        color: white;
+        text-align: center;
+        padding: 15px 10px;
+        letter-spacing: 1px;
+        overflow-wrap: anywhere;
+    }
+
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sm-one,
+    .sm-two,
+    .sm-thirds,
+    .sm-fourth,
+    .md-one,
+    .md-two,
+    .md-third,
+    .md-four,
+    .lg-one,
+    .lg-two,
+    .lg-four,
+    .lg-third {
+        width: 100%;
+    }
+
+    @keyframes fadeEffect {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media only screen and (max-width: 800px) {
+        .sm-one {
+            width: 100%;
+        }
+
+        .sm-two {
+            width: calc(100% / 2);
+        }
+
+        .sm-third {
+            width: calc(100% / 3 * 2);
+        }
+
+        .sm-fourth {
+            width: calc(100% / 4);
+        }
+
+        .column {
+            float: left;
+        }
+    }
+
+    @media only screen and (min-width: 800px) {
+        .md-one {
+            width: 100%;
+        }
+
+        .md-two {
+            width: calc(100% / 2);
+        }
+
+        .md-third {
+            width: calc(100% / 3);
+        }
+
+        .md-fourth {
+            width: calc(100% / 4);
+        }
+
+        .column {
+            float: left;
+        }
+
+    }
+
+    @media only screen and (min-width: 1200px) {
+        .lg-one {
+            width: 100%;
+        }
+
+        .lg-two {
+            width: calc(100% / 2);
+        }
+
+        .lg-third {
+            width: calc(100% / 3);
+        }
+
+        .lg-fourth {
+            width: calc(100% / 4);
+        }
+
+        .column {
+            float: left;
+        }
+    }
+
+    .header {
+        height: 500px;
+        width: 100%;
+    }
+
+    .header img {
+        width: 100%;
+        height: 100%;
+        background-image: no-repeat;
+    }
+
+    .btn-back img {
+        width: 15px;
+        height: 25px;
+    }
+
+    .btn-back {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        z-index: 9999999;
+        background: transparent !important;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .sub-header {
+        position: relative;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        background: white;
+        border-radius: 20px;
+        border: 1px #fafafa solid !important;
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+        padding: 15px;
+    }
+
+    .px-15 {
+        padding: 0 15px;
+    }
+
+    .property-forsale {
+        background: #c71f2f !important;
+        padding: 7.5px 20px;
+        color: white;
+        border-radius: 10px;
+        text-transform: uppercase;
+        font-size: 14px;
+
+    }
+
+    .sub-header-body {
+        padding: 15px;
+    }
+
+    .p-relative {
+        position: relative;
+    }
+
+    .price-property-sale {
+        color: #ca2030;
+        padding-top: 25px;
+        font-weight: bold;
+        padding-right: 60px;
+        overflow-wrap: break-word;
+        font-size: 26px;
+    }
+
+    .title-property-sale {
+        color: #000000;
+        font-weight: bold;
+        font-size: 22px;
+        opacity: 0.8;
+        padding-top: 5px;
+        overflow-wrap: anywhere;
+        margin-block-start: 0 !important;
+        margin-block-end: 0 !important;
+    }
+
+    .address-property-sale {
+        font-size: 14px;
+        color: #ec1e2b;
+        font-weight: 600;
+        opacity: 0.8;
+        margin-block-start: 0;
+        padding-top: 10px;
+    }
+
+    .description-property-box {
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+        background: white;
+        border-radius: 20px;
+        padding: 25px 30px;
+        min-height: 570px;
+    }
+
+    .description-property-box .main-title-description {
+        margin-block-start: 0;
+        font-size: 13px;
+        margin-block-end: 0;
+        color: #ca2030;
+        padding-bottom: 25px;
+    }
+
+    .description-property-box .title-description {
+        margin-block-start: 0;
+        font-size: 18px;
+        margin-block-end: 0;
+        padding-bottom: 15px;
+    }
+
+    .pr-15 {
+        padding-right: 15px;
+    }
+
+    .listing-description-property {
+        opacity: 0.8;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .title-description-second {
+        font-size: 16px;
+        padding-top: 20px;
+        color: #727272;
+        font-weight: 600;
+        opacity: 0.9;
+
+    }
+
+    .content-description-second {
+        opacity: 0.8;
+        margin-top: 20px;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .image-qrcode-box {
+        width: 150px;
+        height: 170px;
+    }
+
+    .image-qrcode-box img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .property-view-footer-group {
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+        background: white;
+        border-radius: 30px;
+    }
+
+    .image-brand-wrapper img {
+        width: auto;
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .image-brand-wrapper {
+        background: #f2f2f2;
+        padding: 10px 5px;
+        border-radius: 10px;
+        margin: 5px 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+    }
+
+    .mt-30 {
+        margin-top: 30px;
+    }
+
+    .property-footer-header {
+        background-color: #971837;
+        border-radius: 30px 30px 0 0;
+        padding: 15px 0;
+        background-image: linear-gradient(90deg, #971837 0, #c42032 100%);
+    }
+
+    .header-body-description {
+        padding-left: 20px;
+    }
+
+    .header-body {
+        display: flex;
+        padding: 15px 20px;
+        justify-content: flex-start;
+    }
+
+    .header-body-description .desc-description {
+        margin-block-start: 0 !important;
+        padding-top: 5px;
+        color: white;
+        letter-spacing: 1px;
+        font-weight: 600 !important;
+        font-size: 16px;
+        overflow-wrap: break-word;
+        text-transform: uppercase;
+        margin-block-end: 0 !important;
+    }
+
+    .header-body-description .title-description {
+        margin-block-start: 0 !important;
+        padding-top: 5px;
+        color: white;
+        letter-spacing: 1px;
+        font-weight: 600 !important;
+        font-size: 16px;
+        overflow-wrap: break-word;
+        text-transform: uppercase;
+        margin-block-end: 0 !important;
+    }
+
+    .header-body .header-body-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 100px;
+        background: white;
+    }
+
+    .header-body .header-body-image img {
+        width: 100%;
+        height: 100%;
+        border-radius: 100px;
+    }
+
+    .text-primary {
+        color: #ca2030;
+    }
+
+    .text-green {
+        color: #50b864;
+    }
+
+    .image-footer-box img {
+        width: 40px;
+        height: 60px;
+    }
+
+    .image-footer-box {
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+        width: 80px;
+        border-radius: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80px;
+        background: white;
+    }
+
+    .property-footer-footing {
+        background: white;
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.20);
+        padding: 20px;
+        border-radius: 0 0 30px 30px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .property-footing-left {
+        display: flex;
+    }
+
+    .property-footing-left-desc {
+        padding: 0 15px 0 25px;
+        width: 100%;
+    }
+
+    .property-footing-left-desc .title-era {
+        font-weight: bold !important;
+        color: #00008a;
+        font-size: 18px;
+    }
+
+    .property-footing-left-desc .description-era {
+        font-size: 13px;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+        color: #737373;
+        padding-top: 5px;
+    }
+
+    .property-footing-left-desc .address-era {
+        font-size: 13px;
+        line-height: 1.5;
+        padding-top: 10px;
+        overflow-wrap: anywhere;
+        color: #737373;
+        padding-top: 5px;
+    }
+
+    .box-listing-detail {
+        border: 2px #d20019 solid;
+        margin-bottom: 25px;
+        border-top-right-radius: 15px;
+        border-top-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+    }
+
+    .property-footer-footing {
+        border: 2px #d20019 solid;
+        border-top: 0 !important;
+    }
+
+    .header-listing-detail {
+        text-align: center;
+        background: #d20019;
+        color: white;
+        padding: 20px 10px;
+        border-top-right-radius: 13px;
+        border-top-left-radius: 13px;
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+    }
+
+    .body-listing-detail span {
+        color: #737373;
+        font-size: 15px;
+        position: relative;
+        top: -2px;
+        font-weight: 600;
+    }
+
+    .body-listing-detail img {
+        width: 25px;
+        margin-right: 5px;
+        height: 20px;
+    }
+
+    .body-listing-detail .sub-body-list-element:last-child {
+        margin-left: 25px;
+    }
+
+    .body-listing-detail {
+        background: white;
+        padding: 25px 15px;
+        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+
+    .p-15 {
+        padding: 15px;
+    }
+
+    .property-footer-header .footer-body {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 25px;
+        color: white;
+    }
+
+    .property-footer-header .footer-body .description-footer {
+
+        color: #eccdd7 !important;
+        line-height: 1.5;
+        font-size: 14px;
+        overflow-wrap: anywhere;
+    }
+
+    .property-footer-header .footer-body .position-footer {
+        border-top: 3px #eccdd7 solid;
+        margin-top: 5px;
+        padding-top: 5px;
+        width: 100%;
+        line-height: 1.5;
+        font-size: 14px;
+        letter-spacing: 1px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .property-footer-header .footer-body .content-qrcode-group .image-qrcode-box {
+        width: 80px;
+        height: 80px;
+
+    }
+
+    .property-footer-header .footer-body .content-qrcode-group {
+        width: 80px;
+
+    }
+
+    .property-footer-header .footer-body .content-qrcode-group .description-qrcode {
+        text-align: center;
+        font-size: 13px;
+        overflow-wrap: anywhere;
+        padding-top: 10px;
+        padding-bottom: 25px;
+    }
+
+    .property-footer-header .footer-body .footer-body-left {
+        width: 100%;
+        margin-right: 25px;
+    }
+
+    .subheader-qrcode-group img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .subheader-qrcode-group {
+        width: 90px;
+        height: 90px;
+    }
+
+    .subheader-logo img {
+        width: 80px;
+        height: 105px;
+    }
+
+    .subheader-title-qrcode {
+        font-size: 10px;
+        text-align: center;
+        color: #565656;
+    }
+
+    .sub-header-body {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .sub-header-body .subheader-right {
+        display: flex;
+        margin-right: 30px;
+    }
+
+    .sub-header-body .subheader-right .subheader-qrcode-group {
+        margin-right: 30px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        align-items: center;
+    }
+
+    @media(max-width: 767px) {
+        .property-forsale {
+            font-size: 12px;
+        }
+
+        .price-property-sale {
+            font-size: 22px;
+        }
+
+        .title-property-sale {
+            font-size: 18px;
+        }
+
+        .address-property-sale {
+            font-size: 13px;
+        }
+
+        .subheader-right {
+            margin-right: 15px !important;
+        }
+
+        .sub-header-body .subheader-right .subheader-qrcode-group {
+            margin-right: 15px;
+        }
+
+        .header-listing-detail {
+            font-size: 18px;
+        }
+
+        .description-property-box .title-description {
+            font-size: 16px;
+        }
+
+        .listing-description-property {
+            font-size: 13px;
+        }
+
+        .title-description-second {
+            font-size: 15px;
+        }
+
+        .content-description-second {
+            font-size: 13px;
+        }
+
+        .header-body .header-body-image {
+            width: 70px;
+            height: 70px;
+        }
+
+        .header-body-description .title-description {
+            font-size: 15px;
+        }
+
+        .header-body-description .desc-description {
+            font-size: 15px;
+        }
+
+        .property-footer-header .footer-body .description-footer {
+            font-size: 13px;
+        }
+
+        .property-footer-header .footer-body .position-footer {
+            font-size: 15px;
+        }
+
+        .property-footer-header .footer-body .content-qrcode-group .image-qrcode-box {
+            width: 65px;
+            height: 65px;
+        }
+
+        .property-footer-header .footer-body .content-qrcode-group {
+            width: 65px;
+        }
+
+        .property-footing-left-desc {
+            padding: 0 15px;
+        }
+
+        .property-footing-left-desc .title-era {
+            font-size: 16px;
+        }
+
+        .image-footer-box {
+            width: 70px;
+            height: 70px;
+        }
+
+        .image-footer-box img {
+            width: 30px;
+            height: 45px;
+        }
+
+        .header {
+            height: 400px;
+        }
+    }
+
+    @media(max-width:650px) {
+        .main-header {
+            font-size: 14px;
+        }
+
+        .price-property-sale {
+            font-size: 18px;
+        }
+
+        .title-property-sale {
+            font-size: 16px;
+        }
+
+        .address-property-sale {
+            font-size: 12px;
+        }
+
+        .subheader-title-qrcode {
+            font-size: 9px;
+        }
+
+        .subheader-qrcode-group {
+            width: 80px;
+        }
+
+        .subheader-logo img {
+            width: 70px;
+            height: 95px;
+        }
+
+        .sub-header {
+            padding: 0;
+        }
+
+        .description-property-box {
+            padding: 25px 15px;
+        }
+
+        .description-property-box .main-title-description {
+            font-size: 12px;
+        }
+
+        .description-property-box .title-description {
+            font-size: 15px;
+        }
+
+        .listing-description-property {
+            font-size: 12px;
+        }
+
+        .title-description-second {
+            font-size: 14px;
+        }
+
+        .content-description-second {
+            font-size: 12px;
+        }
+
+        .sub-header-body {
+            padding: 0;
+        }
+
+        .subheader-left {
+            padding: 15px;
+        }
+
+        .subheader-right {
+            padding: 15px;
+        }
+
+        .header-listing-detail {
+            font-size: 16px;
+        }
+
+        .body-listing-detail .sub-body-list-element:last-child {
+            margin-left: 10px;
+        }
+
+        .header-body-description .title-description {
+            font-size: 14px;
+        }
+
+        .header-body-description .desc-description {
+            font-size: 14px;
+        }
+
+        .property-footer-header .footer-body .description-footer {
+            font-size: 12px;
+        }
+
+        .property-footer-header .footer-body .position-footer {
+            font-size: 14px;
+        }
+
+        .property-footer-header .footer-body .content-qrcode-group .description-qrcode {
+            font-size: 12px;
+        }
+
+        .property-footing-left-desc .title-era {
+            font-size: 14px;
+        }
+
+        .property-footing-left-desc .description-era {
+            font-size: 12px;
+        }
+
+        .property-footing-left-desc .address-era {
+            font-size: 12px;
+        }
+
+        .property-footer-header .footer-body .footer-body-left {
+            margin-right: 15px;
+        }
+
+        .header {
+            height: 350px;
+        }
+    }
+
+    @media(max-width:499px) {
+        .sub-header-body {
+            flex-direction: column;
+        }
+
+        .subheader-right {
+            padding-top: 0 !important;
+        }
+
+        .responsive-column-one {
+            width: 100% !important;
+        }
+
+        .responsive-column-two {
+            width: 100% !important;
+        }
+
+        .subheader-left {
+            width: auto !important;
+        }
+
+        .header {
+            height: 300px;
+        }
+
+        .description-property-box {
+            min-height: auto;
+        }
+    }
+
+    .subheader-left {
+        width: 100%;
+    }
+</style>
+
+<body>
+    <div class="main-header">
+        https://www.eraindonesia.com/property/detail/E00001
+    </div>
+    <section class="header">
+        <img src="assets/image/image_property.png" class="mySlides">
+
+    </section>
+    <section class="">
+        <div class="container">
+            <div class="sub-header p-relative">
+                <div class="sub-header-body">
+                    <div class="subheader-left">
+                        <span class="property-forsale">For Sale</span>
+                        <div class="price-property-sale">IDR 11.500.000.000</div>
+                        <h5 class="title-property-sale">Rumah - Jakarta</h5>
+                        <p class="address-property-sale">Melati Lestari Indah<br>Lebak Bulus, Cilandak, Jakarta Selatan
+                        </p>
+                    </div>
+                    <div class="subheader-right">
+                        <div class="subheader-qrcode-group">
+                            <div class="subheader-title-qrcode">QR Code Listing</div>
+                            <div class="subheader-image-qrcode-box"><img src="assets/image/image_qr.png"></div>
+                        </div>
+                        <div class="subheader-logo">
+                            <img src="assets/image/logo.png">
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="">
+        <div class="container" style="padding:0 !important;">
+            <div class="row">
+                <div class="lg-two md-two sm-two responsive-column-one column">
+                    <div class="p-15">
+                        <div class="description-property-box p-relative">
+                            <h5 class="main-title-description">Rumah modern minimalis cocok untuk tempat tinggal.</h5>
+                            <h5 class="title-description">Property Details</h5>
+                            <table class="listing-description-property">
+                                <tbody>
+                                    <tr>
+                                        <td class="pr-15">Tipe Properti</td>
+                                        <td>RUMAH</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pr-15">Luas Tanah</td>
+                                        <td>250 m2</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pr-15">Luas Bangunan</td>
+                                        <td>300 m2</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pr-15">Kamar Tidur</td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pr-15">Kamar Mandi </td>
+                                        <td>3</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pr-15">Garasi</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pr-15">Jumlah Lantai</td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pr-15">Kamar Pembantu</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pr-15">Daya Listrik</td>
+                                        <td>5.500 watt</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="title-description-second">Deskripsi</div>
+                            <div class="content-description-second">Bebas Banjir<br>Dekat Sekolah<br>Dekat RD</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg-two responsive-column-two md-two sm-two column">
+                    <div class="p-15">
+                        <div class="box-listing-detail">
+                            <div class="header-listing-detail">
+                                Listing ID: E00001
+                            </div>
+                            <div class="body-listing-detail">
+                                <div class="sub-body-list-element">
+                                    <img src="assets/image/icon_bathroom.png">
+                                    <span>300</span>
+                                </div>
+                                <div class="sub-body-list-element">
+                                    <img src="assets/image/icon_bedroom.png">
+                                    <span>300</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="property-view-footer-group">
+                            <div class="property-footer-header">
+                                <div class="header-body">
+                                    <div>
+                                        <div class="header-body-image">
+                                            <img src="assets/image/icon_person.png">
+                                        </div>
+                                    </div>
+                                    <div class="header-body-description">
+                                        <h5 class="title-description">IGNATIUS RAYMOND
+                                            GUNAWAN</h5>
+                                        <h5 class="desc-description">ERA PRESTEGIE</h5>
+                                    </div>
+
+                                </div>
+                                <div class="footer-body">
+                                    <div class="footer-body-left">
+                                        <div class="description-footer">085212772421</div>
+                                        <div class="description-footer">Santosolouis@gmail.com</div>
+                                        <div class="position-footer">SENIOR MARKETING ASSOCIATE<br> RUBY PRODUCER</div>
+                                    </div>
+                                    <div class="content-qrcode-group">
+                                        <div class="image-qrcode-box"><img src="assets/image/image_qr.png"></div>
+                                        <div class="description-qrcode">fg522</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="property-footer-footing">
+                            <div class="property-footing-left">
+                                <div class="d-flex">
+                                    <div>
+                                        <div class="image-footer-box">
+                                            <img src="assets/image/logo.png">
+                                        </div>
+                                    </div>
+                                    <div class="property-footing-left-desc">
+                                        <div class="title-era">ERA GRAHA</div>
+                                        <div class="description-era">
+                                            (021) 707 7070
+                                            <br>eraprestegiesample@gmail.com
+                                        </div>
+                                        <div class="address-era">Jl Contoh Jalan
+                                            <br>Menteng
+                                            <br>Jakarta Pusat
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+
+    </script>
+</body>
+
+</html>
