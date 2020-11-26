@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+    <title>Filter</title>
+</head>
+<style>
+    @font-face {
+        font-family: Helvetica;
+        src: url(../assets/fonts/Helvetica.ttf);
+    }
+
+    @font-face {
+        font-family: Roboto;
+        src: url(../assets/fonts/Roboto-Regular.ttf);
+    }
+
+    body {
+        margin: 0 !important;
+        font-family: Helvetica !important;
+        background-color: white;
+        padding-bottom: 8em;
+    }
+
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .header {
+        background-image: url("../assets/image/bg-header.png");
+        height: 200px;
+        background-position: center center;
+        background-size: cover;
+        width: 100%;
+        border-radius: 0 0 30px 30px;
+
+        background-repeat: no-repeat;
+    }
+
+    .header-filter {
+        width: 100%;
+        background-color: white;
+        position: relative;
+        height: 40px;
+        z-index: 999;
+    }
+
+    .title-header {
+        color: white;
+        font-size: 32px;
+        font-weight: 600;
+    }
+
+    .header-box {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: row;
+        height: 100%;
+    }
+
+    .icon-back-header img {
+        width: 10px;
+        margin-top: 5px;
+        height: 20px;
+        margin-right: 25px;
+    }
+
+    .icon-back-header {
+        background: transparent !important;
+        border: 0 !important;
+        outline: none !important;
+        cursor: pointer;
+    }
+
+    .subheader-filter {
+        position: relative;
+        top: -35px;
+        padding: 15px 0 0 0;
+        background-color: white;
+        box-shadow: 10px 0 10px 0px rgba(0, 0, 0, 0.20);
+        border-radius: 10px;
+        border-left: 1px #f2f2f2 solid;
+    }
+
+    .subheader-filter-heading {
+        padding: 15px;
+        border-bottom: 1px solid #ddbcc6;
+    }
+
+    .subheader-filter-heading h5 {
+        font-size: 22px;
+        font-weight: 600;
+        margin-block-start: 0 !important;
+        margin-block-end: 0 !important;
+        color: #ec1e2b;
+    }
+
+    .subheader-locate {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .form-group .label-form {
+        border-bottom: 1px #ccc solid;
+        width: 100%;
+        font-size: 13px;
+        padding: 10px 0;
+        font-weight: 600;
+    }
+
+    .form-group select:focus {
+        outline: none;
+    }
+
+    .form-group select {
+        width: 350px;
+        color: #808080;
+        font-size: 13px;
+        padding: 10px 0;
+        border: 0;
+        border-bottom: 1px #ccc solid;
+    }
+
+    .form-group .form-control {
+        color: #808080;
+        width: 100%;
+        font-size: 13px;
+        outline: none;
+        padding: 10px 0;
+        border: 0;
+        border-bottom: 1px #ccc solid;
+    }
+
+    .border-top-ccc {
+        border-top: 1px #ccc solid;
+    }
+
+    .radio-group-filter {
+        width: 600px;
+        margin-left: 10px;
+    }
+
+    @media only screen and (max-width: 800px) {
+        .radio-group-filter {
+            width: 600px;
+        }
+    }
+
+    @media only screen and (min-width: 800px) {
+        .radio-group-filter {
+            width: 350px;
+        }
+    }
+
+    @media only screen and (min-width: 1200px) {
+        .radio-group-filter {
+            width: 350px;
+        }
+    }
+
+    .px-15 {
+        padding: 0 15px;
+    }
+
+    .mt-15 {
+        margin-top: 15px;
+    }
+
+    .label-radio {
+        width: 24px;
+        font-size: 12px;
+        border-radius: 100%;
+        height: 24px;
+        display: flex;
+        border: 1px #ccc solid;
+        cursor: pointer;
+        color: #808080;
+        font-weight: bold;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0;
+    }
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    input[type="radio"]:checked+label {
+        background: #8c1839;
+        color: white;
+    }
+
+    .radio-filter-element {
+        display: inline-block;
+        margin-right: 3px;
+        margin-top: 3px;
+    }
+
+    .form-last-group {
+        display: flex;
+        margin-left: 10px;
+    }
+
+    .form-last-group input {
+        width: 60px;
+        font-size: 13px;
+        color: #808080;
+        outline: none;
+        border: 0;
+        border-bottom: 1px #ccc solid;
+    }
+
+    .form-last-group select {
+        width: 60px;
+        color: #808080;
+        font-size: 13px;
+        border: 0;
+        border-bottom: 1px #ccc solid;
+    }
+
+    .form-last-group span {
+        font-size: 13px;
+        font-weight: 450;
+        align-items: center;
+        display: flex;
+        width: 30px;
+        justify-content: center;
+        text-align: center;
+        color: #808080;
+    }
+
+    .f-bold {
+        font-weight: bold;
+    }
+
+    .btn-search i {
+        font-weight: normal;
+        font-size: 16px;
+        padding-left: 8px;
+    }
+
+    .btn-search {
+        background: #8c1839;
+        color: white;
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        margin-top: 40px;
+        border: 0 !important;
+        outline: none !important;
+        cursor: pointer;
+        font-weight: 450;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .pt-10 {
+        padding-top: 10px;
+    }
+
+    .mb-5 {
+        margin-bottom: 5px;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    .form-group-left {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .form-group-middle {
+        display: flex;
+    }
+
+    .form-middle-first {
+        margin-right: 10px;
+    }
+
+    .form-middle-last {
+        margin-left: 10px;
+    }
+
+    .border-0 {
+        border: 0 !important;
+    }
+
+    .btn-primary {
+        background: #c71f2f !important;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.20);
+        width: 95px;
+        outline: none;
+        height: 38px;
+        font-family: Roboto;
+    }
+
+    .form-group-button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 7.5px 0;
+        flex-wrap: wrap;
+    }
+
+    .flex-wrap {
+        flex-wrap: wrap;
+    }
+
+    .btn-camera img {
+        width: 20px;
+        height: 15px;
+    }
+
+    .btn-camera {
+        background: #c71f2f !important;
+        width: 45px;
+        margin-right: 5px;
+        height: 38px;
+        border-radius: 5px;
+        border: 0;
+        cursor: pointer;
+        box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.20);
+        outline: none;
+    }
+
+    .form-group-button label {
+        font-weight: 600;
+        font-size: 13px;
+    }
+
+    .btn-add-video {
+        position: absolute;
+        right: 0;
+        top: 5px;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .p-relative {
+        position: relative;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked+.slider {
+        background-color: #ec1e2b !important;
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px #ec1e2b;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+    .form-group-toggle {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .form-group-toggle div {
+        margin-left: 10px;
+        font-size: 13px;
+    }
+
+    .btn-set-location {
+        background: #c71f2f !important;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.20);
+        margin-top: 15px;
+        padding: 10px 15px;
+        outline: none;
+        font-family: Roboto;
+    }
+
+    .text-mute-form {
+        position: absolute;
+        right: 0;
+        color: #7d7d7d;
+        font-size: 14px;
+        bottom: 10px;
+    }
+
+    .text-form-length {
+        position: absolute;
+        color: #7d7d7d;
+        font-size: 12px;
+        right: 0;
+        bottom: 2px;
+    }
+
+    .custom-radio {
+        display: block;
+        position: relative;
+        padding-left: 27px;
+        margin-top: 10px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 13px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* Hide the browser's default radio button */
+    .custom-radio input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    /* Create a custom radio button */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 18px;
+        width: 18px;
+        background-color: white;
+        border: 1px black solid;
+        border-radius: 50%;
+    }
+
+    /* On mouse-over, add a grey background color */
+
+    /* When the radio button is checked, add a blue background */
+    .custom-radio input:checked~.checkmark {
+        background-color: white;
+        border: 1px #ec1e2b solid;
+    }
+
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the indicator (dot/circle) when checked */
+    .custom-radio input:checked~.checkmark:after {
+        display: block;
+    }
+
+    /* Style the indicator (dot/circle) */
+    .custom-radio .checkmark:after {
+        left: 2px;
+        top: 2px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #ec1e2b;
+    }
+
+    .ml-15 {
+        margin-left: 15px;
+    }
+
+    .mb-15 {
+        margin-bottom: 15px;
+    }
+
+    .input-currency-group {
+        position: relative;
+        top: 2px;
+        width: 100%;
+        margin-left: 30px;
+    }
+
+    .tab-header {
+        display: flex;
+        border-radius: 40px;
+
+        box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.20);
+    }
+
+    .tab-header .tablinks:first-child {
+        border-radius: 40px 0 0 40px;
+    }
+
+    .tab-header .tablinks:last-child {
+        border-radius: 0 40px 40px 0;
+    }
+
+    .tab-header-active {
+        background: #C71F2F !important;
+        color: white !important;
+    }
+
+    .tab-header .tablinks {
+        background: white;
+        color: #C71F2F;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        outline: none;
+        font-weight: 600;
+        font-size: 16px;
+        width: 100%;
+        padding: 10px;
+    }
+
+    @keyframes fadeEffect {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .mt-15 {
+        margin-top: 15px;
+    }
+
+    .tabcontent {
+        animation: fadeEffect 1s;
+    }
+
+    .mt-25 {
+        margin-top: 25px;
+    }
+
+    .text-muted-label {
+        color: #7E7E7E;
+        font-size: 10px;
+        font-weight: normal;
+        padding-left: 5px;
+    }
+
+    .border-bottom-0 {
+        border-bottom: 0 !important;
+    }
+
+    .input-search-user-group {
+        display: flex;
+        margin-top: 10px;
+    }
+
+    .input-search-user-group input {
+        width: 100%;
+        padding: 10px 10px;
+        outline: none !important;
+        color: #808080;
+        border: 1px #ccc solid;
+    }
+
+    .input-search-user-group .btn-group-search-user {
+        display: flex;
+    }
+
+    .input-search-user-group .btn-group-search-user .btn-filter {
+        background: #C71F2F;
+        color: white;
+        border: 0 !important;
+        outline: none;
+        cursor: pointer;
+        padding: 10px 15px;
+    }
+
+    .input-search-user-group .btn-group-search-user .btn-add {
+        background: #282161;
+        color: white;
+        border: 0 !important;
+        outline: none;
+        cursor: pointer;
+        padding: 10px 15px;
+    }
+
+    .label-form-custom {
+        color: #808080;
+        font-size: 13px;
+        font-weight: normal;
+    }
+
+    .heading-form {
+        border-bottom: 1px #ccc solid;
+        padding-bottom: 15px;
+        padding-top: 15px;
+    }
+
+    .btn-whatsapp {
+        border: 0;
+        border-radius: 100px;
+        cursor: pointer;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        width: 125px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #50B864;
+        outline: none;
+        height: 38px;
+        box-shadow: 1px 4px 20px rgba(0, 0, 0, 0.08);
+        background: #ffffff;
+        font-family: Roboto;
+    }
+
+    .btn-whatsapp img {
+        width: 20px;
+        height: 20px;
+        margin-left: 10px;
+    }
+
+    .btn-secondary {
+        background: #c71f2f !important;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.20);
+        width: 105px;
+        outline: none;
+        height: 38px;
+        font-family: Roboto;
+    }
+
+    /* Hide the browser's default checkbox */
+    .checkbox-custom {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    /* Create a custom checkbox */
+    .checkmark-custom {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        border-radius: 3px;
+        width: 25px;
+        background-color: #eee;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .checkbox-custom~.checkmark-custom {
+        background-color: #ccc;
+    }
+
+    /* When the checkbox is checked, add a blue background */
+    .checkbox-custom:checked~.checkmark-custom {
+        background-color: #EC1E2B;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark-custom:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .checkbox-custom:checked~.checkmark-custom:after {
+        display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .checkmark-custom:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    .container-checkbox {
+        display: block;
+        width: auto;
+        position: relative;
+        padding-left: 35px;
+        margin: 15px 0;
+        font-size: 13px !important;
+        font-weight: normal !important;
+        padding-top: 5px;
+    }
+
+    .mr-15 {
+        margin-right: 15px;
+    }
+
+    .mr-30 {
+        margin-right: 30px;
+    }
+
+    .align-items-center {
+        align-items: center !important;
+    }
+
+    @media(max-width:420px) {
+        .form-group .label-form {
+            font-size: 12px;
+        }
+
+        .custom-radio {
+            font-size: 12px;
+        }
+
+        .tab-header .tablinks {
+            font-size: 13px;
+        }
+
+        .text-muted-label {
+            font-size: 9px;
+        }
+
+        .form-group .form-control {
+            font-size: 12px;
+        }
+
+        .container-checkbox {
+            font-size: 12px !important;
+        }
+
+        .form-group-button label {
+            font-size: 12px;
+        }
+
+        .btn-secondary {
+            font-size: 11px;
+        }
+
+        .btn-primary {
+            font-size: 11px;
+        }
+    }
+
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding: 25px 0;
+        overflow-y: auto;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    /* Modal Content */
+    .modal-body {
+        background-color: #fefefe;
+        margin: auto;
+        margin-bottom: 50px;
+        width: 93%;
+        border-radius: 10px;
+    }
+
+    /* The Close Button */
+    .close-modal {
+        color: #ffff;
+        float: right;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .modal-body .modal-header {
+        background: #282161;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 12px;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        align-items: center;
+    }
+
+    .modal-header .modal-title {
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .close-modal:hover,
+    .close-modal:focus {
+        color: #ffff;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-body .modal-content {
+        padding: 15px 12px;
+    }
+
+    .label-must:after {
+        content: " *";
+        color: red;
+        font-size: 14px;
+    }
+
+    .overflow-hidden {
+        overflow: hidden;
+    }
+
+    .modal-footer {
+        padding: 15px 10px;
+        display: flex;
+        margin-top: 15px;
+        border-top: 1px #ccc solid;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+
+    .btn-action-modal {
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin: 5px 0;
+        padding: 7.5px 20px;
+        margin-left: 7.5px !important;
+        outline: none;
+        font-family: Roboto;
+    }
+
+    .bg-submit {
+        background: #8C1839;
+    }
+
+    .bg-option {
+        background: #282161;
+    }
+
+    .d-none {
+        display: none;
+    }
+
+    .bg-close {
+        background: #C71F2F;
+    }
+
+    .heading-signature {
+        font-size: 14px;
+    }
+
+    .description-signature {
+        padding: 15px 15px 0 15px;
+        margin-block-start: 0;
+    }
+
+    .description-signature li {
+        padding: 5px 0;
+        font-size: 14px;
+    }
+
+    .container-signature {
+        border: 1px #ccc solid;
+        width: 100%;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sub-container-signature {
+        width: 100%;
+        margin: 20px 15px;
+        border: 1px #ccc solid;
+        height: 210px;
+    }
+
+    .btn-secondary:disabled {
+        opacity: 0.7;
+    }
+
+    .signature-box {
+        width: 180px;
+        display: block;
+        margin: 15px auto;
+        height: 150px;
+    }
+
+    .signature-box img {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<body>
+    <section class="header">
+        <div class="container header-box px-15">
+            <button class="icon-back-header"><img src="../assets/image/icon-back.png" /></button>
+            <div class="title-header">Input Listing</div>
+        </div>
+    </section>
+    <section class="sub-header">
+        <div class="container">
+            <div class="subheader-filter">
+                <div class="px-15 mt-15">
+                    <div class="form-group">
+                        <label class="label-form border-0">Billingual Type</label>
+                        <div class="d-flex flex-wrap p-relative mb-15">
+                            <div class="mr-15">
+                                <label class="custom-radio">Bahasa
+                                    <input type="radio" name="Billingual">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div>
+                                <label class="custom-radio">English
+                                    <input type="radio" name="Billingual">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="label-form border-0">Sale Type</label>
+                        <div class="d-flex flex-wrap p-relative mb-15">
+                            <div class="mr-30">
+                                <label class="custom-radio">Open
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div>
+                                <label class="custom-radio">Exclusive
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- select option pjp -> default online -->
+                    <!-- jika pjp offline yang dipilih maka element yang memiliki class pjp_online akan ditambahkan class d-none -->
+                    <!-- jika pjp online yang dipilih maka element yang memiliki class pjp_offline akan ditambahkan class d-none -->
+                    <div class="form-group form-group-left">
+                        <label class="label-form">E-PJP</label>
+                        <select onchange="changeTipePjp(this)">
+                            <option value="e-pjp">E-PJP</option>
+                            <option value="pjp">PJP</option>
+                        </select>
+                    </div>
+                    <div class="form-group w-100 pt-10">
+                        <label class="label-form border-0">PJP NUMBER </label>
+                        <div class="p-relative">
+                            <input type="text" id="input_pjp_number" class="form-control"
+                                placeholder="Otomatis Oleh Sistem" readonly>
+                            <span class="text-mute-form" id="icon_input_pjp_number"><i class="fa fa-lock"></i></span>
+                        </div>
+                    </div>
+                    <!-- document pjp khusus pjp offline -->
+                    <div class="form-group-button pjp_offline d-none pt-10">
+                        <label class="pt-10">Add PJP Documents</label>
+                        <div class="d-flex flex-wrap pt-10">
+                            <button class="btn btn-primary">Select File</button>
+                        </div>
+                    </div>
+
+                    <!-- start group component buat pjp online -->
+                    <div class="pjp_online">
+                        <div class="form-group form-group-left">
+                            <label class="label-form">Masa Aktif Listing</label>
+                            <select>
+                                <option>3 Bulan</option>
+                                <option>Option 2</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-group-left">
+                            <label class="label-form">Komisi Jual</label>
+                            <select>
+                                <option>3%</option>
+                                <option>Option 2</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-group-left">
+                            <label class="label-form">Komisi Sewa</label>
+                            <select>
+                                <option>5%</option>
+                                <option>Option 2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- end group component buat pjp online -->
+
+                    <!-- start pemilik property tab -->
+                    <div class="tab-header mt-25">
+                        <button class="tablinks tablinks-pemilik"
+                            onclick="openTab(event, 'pertama','tabcontent-pemilik','tablinks-pemilik')"
+                            id="defaultOpen">Pemilik
+                            Pertama</button>
+
+                        <button class="tablinks tablinks-pemilik"
+                            onclick="openTab(event, 'kedua','tabcontent-pemilik','tablinks-pemilik')">Pemilik
+                            kedua</button>
+                    </div>
+                    <!-- start pemilik pertama property -->
+                    <div id="pertama" class="tabcontent tabcontent-pemilik mt-15">
+                        <div class="form-group">
+                            <label class="label-form border-bottom-0">Owner Info<span class="text-muted-label">Informasi
+                                    ini tidak akan tampil di publik</span></label>
+
+                            <div class="input-search-user-group">
+                                <input type="text" class="">
+                                <div class="btn-group-search-user">
+                                    <button type="button" class="btn btn-filter"><i class="fa fa-search"></i></button>
+                                    <button type="button" class="btn btn-add"
+                                        onclick="openModal('modal-show-input-owner')"><i
+                                            class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form-custom border-0">Region</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" value="Indonesia" readonly>
+                                <span class="text-mute-form"><i class="fa fa-lock"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form-custom border-0">City</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" value="Surabaya" readonly>
+                                <span class="text-mute-form"><i class="fa fa-lock"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form-custom border-0">Post Code</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" value="67171" readonly>
+                                <span class="text-mute-form"><i class="fa fa-lock"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form-custom border-0">ID Number (KTP / SIM)</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" value="2514082828288882" readonly>
+                                <span class="text-mute-form"><i class="fa fa-lock"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form-custom border-0">Phone (Whatsapp)</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" value="081285270793" readonly>
+                                <span class="text-mute-form"><i class="fa fa-lock"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form-custom border-0">Phone (Office)</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" value="081285270793" readonly>
+                                <span class="text-mute-form"><i class="fa fa-lock"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form-custom border-0">Birthdate</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" value="20-10-2000" readonly>
+                                <span class="text-mute-form"><i class="fa fa-lock"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end pemilik pertama property -->
+
+                    <!-- start pemilik kedua property -->
+                    <div id="kedua" class="tabcontent tabcontent-pemilik mt-15">
+                        <div class="form-group">
+                            <label class="label-form border-bottom-0">Owner Info<span class="text-muted-label">Informasi
+                                    ini tidak akan tampil di publik</span></label>
+
+                            <div class="input-search-user-group">
+                                <input type="text" class="">
+                                <div class="btn-group-search-user">
+                                    <button type="button" class="btn btn-filter"><i class="fa fa-search"></i></button>
+                                    <button type="button" class="btn btn-add"
+                                        onclick="openModal('modal-show-input-owner')"><i
+                                            class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form-custom border-0">Region</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" value="Indonesia" readonly>
+                                <span class="text-mute-form"><i class="fa fa-lock"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form-custom border-0">City</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" value="Malang" readonly>
+                                <span class="text-mute-form"><i class="fa fa-lock"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form-custom border-0">Post Code</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" value="67171" readonly>
+                                <span class="text-mute-form"><i class="fa fa-lock"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form-custom border-0">ID Number (KTP / SIM)</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" value="2514082828288882" readonly>
+                                <span class="text-mute-form"><i class="fa fa-lock"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form-custom border-0">Phone (Whatsapp)</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" value="081285270793" readonly>
+                                <span class="text-mute-form"><i class="fa fa-lock"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form-custom border-0">Phone (Office)</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" value="081285270793" readonly>
+                                <span class="text-mute-form"><i class="fa fa-lock"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form-custom border-0">Birthdate</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" value="20-10-2000" readonly>
+                                <span class="text-mute-form"><i class="fa fa-lock"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end pemilik kedua property -->
+                    <!-- end pemilik property -->
+
+                    <!-- start saksi property khusus pjp online -->
+                    <div class="form-group pt-10 pjp_online">
+                        <label class="label-form border-0">Saksi<span class="text-muted-label">(Optional)</span></label>
+                        <div class="mb-5">
+                            <input type="text" class="form-control" placeholder="Nama">
+                        </div>
+                        <div class="mb-5">
+                            <input type="text" class="form-control" placeholder="NIK">
+                        </div>
+                    </div>
+                    <!-- end saksi property -->
+
+                    <div class="form-group pt-10">
+                        <label class="label-form border-0">Listing Type</label>
+                        <select class="form-control">
+                            <option>Select Listing Type</option>
+                            <option>Option 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group pt-10">
+                        <label class="label-form border-0">Rent Periode (years)</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group pt-10">
+                        <label class="label-form border-0">Address</label>
+                        <div class="mb-5">
+                            <div class="p-relative">
+                                <input type="text" class="form-control" id="input-jalan" onkeyup="InputLengthCheck()"
+                                    placeholder="Jalan" maxlength="35">
+                                <span class="text-form-length" id="template-length-jalan"></span>
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <div class="p-relative">
+                                <input type="text" class="form-control" id="input-blok" onkeyup="InputLengthCheck()"
+                                    placeholder="Blok" maxlength="6">
+                                <span class="text-form-length" id="template-length-blok">23</span>
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <div class="p-relative">
+                                <input type="text" class="form-control" id="input-rumah" onkeyup="InputLengthCheck()"
+                                    placeholder="No. Rumah" maxlength="9">
+                                <span class="text-form-length" id="template-length-rumah"></span>
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <input type="text" class="form-control" placeholder="RT/RW">
+                        </div>
+                    </div>
+                    <div class="form-group pt-10">
+                        <label class="label-form">Daerah</label>
+                        <div class="p-relative">
+                            <textarea class="form-control" rows="3" id="input-daerah" onkeyup="InputLengthCheck()"
+                                maxlength="30"></textarea>
+                            <span class="text-form-length" style="right: 5px !important; bottom: 10px !important;"
+                                id="template-length-daerah"></span>
+
+                        </div>
+
+                    </div>
+                    <div class="form-group form-group-left">
+                        <label class="label-form">Province</label>
+                        <select>
+                            <option>Select Province</option>
+                            <option>Option 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-left">
+                        <label class="label-form">City</label>
+                        <select>
+                            <option>Select City</option>
+                            <option>Option 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form">Bedroom</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <label class="label-form">Bathroom</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form border-0">Maid Bedroom</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <label class="label-form border-0">Maid Bathroom</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form border-0">Floor</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <label class="label-form border-0">Electric</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="form-group pt-10">
+                        <label class="label-form border-0">Price</label>
+                        <div class="d-flex">
+                            <div>
+                                <select class="form-control" style="width: 60px !important;">
+                                    <option>IDR</option>
+                                    <option>Option2</option>
+                                </select>
+                            </div>
+                            <div class="input-currency-group">
+                                <input type="text" class="form-control" placeholder="0">
+                            </div>
+                        </div>
+                        <!-- Start Negosiasi sampai transaksi selesai khusus pjp online -->
+                        <label class="container-checkbox pjp_online">Negosiasi sampai transaksi selesai
+                            <input type="checkbox" class="checkbox-custom">
+                            <span class="checkmark-custom"></span>
+                        </label>
+                        <!-- End Negosiasi sampai transaksi selesai khusus pjp online -->
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form border-0">Land Area (LT) </label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" placeholder="0">
+                                <span class="text-mute-form">(sqm)</span>
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <label class="label-form border-0">Building Area (LB)</label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control" placeholder="0">
+                                <span class="text-mute-form">(sqm)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form border-0">Garage</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <label class="label-form border-0">Car Port</label>
+                            <input type="text" class="form-control" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first pt-10">
+                            <div class="label-form w-100">
+                                Wind Direction
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <select class="form-control">
+                                <option>Select Direction</option>
+                                <option>Option 2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first pt-10">
+                            <div class="label-form w-100">
+                                Certificate
+                            </div>
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <select class="form-control">
+                                <option>Select Certificate</option>
+                                <option>Option 2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-toggle pt-10">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <div>Share Location</div>
+                    </div>
+                    <div class="form-group-middle">
+                        <div class="form-group form-middle-first w-100 pt-10">
+                            <label class="label-form border-0">Latitude</label>
+                            <input type="text" class="form-control" placeholder="-6.2109607">
+                        </div>
+                        <div class="form-group form-middle-last w-100 pt-10">
+                            <label class="label-form border-0">Longtitude</label>
+                            <input type="text" class="form-control" placeholder="106.8169652">
+                        </div>
+                    </div>
+                    <button class="btn btn-set-location">Set Location n Map</button>
+                    <div class="form-group-button">
+                        <label class="pt-10">Add Photos</label>
+                        <div class="d-flex flex-wrap pt-10">
+                            <button class="btn btn-camera"><img src="../assets/image/icon_camera.png"></button>
+                            <button class="btn btn-primary">Select Photo</button>
+                        </div>
+                    </div>
+                    <div class="form-group pt-10">
+                        <label class="label-form border-0">Add Video</label>
+                        <div class="p-relative">
+                            <input type="text" class="form-control mt-15" placeholder="or paste video URL here">
+                            <button class="btn btn-primary btn-add-video">Add Video</button>
+                        </div>
+                    </div>
+                    <div class="form-group pt-10">
+                        <label class="label-form">Tagline</label>
+                        <div class="p-relative">
+                            <textarea class="form-control" id="input-tagline" rows="4" onkeyup="InputLengthCheck()"
+                                maxlength="150"></textarea>
+                            <span class="text-form-length" style="bottom:15px;" id="template-length-tagline"></span>
+                        </div>
+                    </div>
+                    <div class="form-group pt-10">
+                        <label class="label-form">Description</label>
+                        <div class="p-relative">
+                            <textarea class="form-control" rows="4" id="input-description" onkeyup="InputLengthCheck()"
+                                maxlength="200"></textarea>
+                            <span class="text-form-length" style="bottom:15px;" id="template-length-description"></span>
+                        </div>
+
+                    </div>
+                    <!-- start tanda tangan digital khusus pjp online -->
+                    <div class="pjp_online">
+                        <div class="form-group pt-10 heading-form">
+                            <label class="label-form border-0">Tanda Tangan Digital</label>
+                        </div>
+                        <div class="signature-box">
+                            <img src="../assets/image/signature.jpg">
+                        </div>
+                        <div class="form-group-button">
+                            <label class="pt-10">Pemilik Pertama</label>
+                            <div class="d-flex flex-wrap pt-10">
+                                <button class="btn btn-secondary" type="button"
+                                    onclick="openModal('modal-show-signature')">E-SIGNATURE</button>
+                            </div>
+                        </div>
+                        <div class="form-group-button">
+                            <label class="pt-10">Pemilik Kedua<span class="text-muted-label">(Optional)</span></label>
+                            <div class="d-flex flex-wrap pt-10">
+                                <button class="btn btn-secondary" type="button"
+                                    onclick="openModal('modal-show-signature')">E-SIGNATURE</button>
+                            </div>
+                        </div>
+                        <div class="form-group-button">
+                            <label class="pt-10">Saksi</label>
+                            <div class="d-flex flex-wrap pt-10">
+                                <button class="btn btn-secondary" type="button"
+                                    onclick="openModal('modal-show-signature')">E-SIGNATURE</button>
+                            </div>
+                        </div>
+                        <div class="form-group-button">
+                            <label class="pt-10">Member Broker</label>
+                            <div class="d-flex flex-wrap align-items-center pt-10">
+                                <label class="container-checkbox" style="margin: 0 7.5px 0 0 !important;">Default
+                                    <input type="checkbox" class="checkbox-custom"
+                                        onclick="changecheckboxMemberBroker(this)">
+                                    <span class="checkmark-custom"></span>
+                                </label>
+                                <button class="btn btn-secondary" type="button" id="btn-signature-broker"
+                                    onclick="openModal('modal-show-signature')">E-SIGNATURE</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end tanda tangan digital -->
+                    <!-- start upload dokumen untuk pjp online -->
+                    <div class="pjp_online">
+                        <div class="form-group pt-10 heading-form">
+                            <label class="label-form border-0">Upload Document</label>
+                        </div>
+                        <div class="form-group-button">
+                            <label class="pt-10">Sertifikat</label>
+                            <div class="d-flex flex-wrap pt-10">
+                                <button class="btn btn-primary">Select File</button>
+                            </div>
+                        </div>
+                        <div class="form-group-button">
+                            <label class="pt-10">IMB</label>
+                            <div class="d-flex flex-wrap pt-10">
+                                <button class="btn btn-primary">Select File</button>
+                            </div>
+                        </div>
+                        <div class="form-group-button">
+                            <label class="pt-10">PBB</label>
+                            <div class="d-flex flex-wrap pt-10">
+                                <button class="btn btn-primary">Select File</button>
+                            </div>
+                        </div>
+                        <div class="form-group-button">
+                            <label class="pt-10">Lainnya</label>
+                            <div class="d-flex flex-wrap pt-10">
+                                <button class="btn btn-primary">Select File</button>
+                            </div>
+                        </div>
+                        <div class="form-group pt-10 heading-form">
+                            <label class="label-form border-0">Share Document</label>
+
+                        </div>
+                    </div>
+                    <!-- end upload dokumen untuk pjp online -->
+
+                    <!-- start share dokumen untuk pjp online -->
+                    <div class="pjp_online">
+                        <div class="form-group-button">
+                            <label class="pt-10">Komitmen Service</label>
+                            <div class="d-flex flex-wrap pt-10">
+                                <button class="btn btn-whatsapp">Whatsapp<img
+                                        src="../assets/image/icon_whatsapp.png"></button>
+                            </div>
+                        </div>
+                        <div class="form-group-button">
+                            <label class="pt-10">Surat Kuasa Direksi</label>
+                            <div class="d-flex pt-10">
+                                <button class="btn btn-whatsapp">Whatsapp<img
+                                        src="../assets/image/icon_whatsapp.png"></button>
+                            </div>
+                        </div>
+                        <div class="form-group-button">
+                            <label class="pt-10">PJP Ekslusive</label>
+                            <div class="d-flex flex-wrap pt-10">
+                                <button class="btn btn-whatsapp">Whatsapp<img
+                                        src="../assets/image/icon_whatsapp.png"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end share dokumen -->
+                </div>
+                <button class="btn btn-search">SUBMIT</button>
+            </div>
+        </div>
+        <!-- end form input listing -->
+
+
+        <!-- modal input/tambah owner -->
+        <div id="modal-show-input-owner" class="modal">
+            <div class="modal-body">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        Input Owner
+                    </div>
+                    <span class="close-modal" onclick="colseModal('modal-show-input-owner')"><i
+                            class="fa fa-times"></i></span>
+                </div>
+                <div class="modal-content">
+                    <!-- jika yang dipilih perorangan maka element dengan id owner_lembaga akan ditambahkan class d-none begitu juga sebaliknya -->
+                    <div class="form-group form-group-left">
+                        <label class="label-form">Select Type</label>
+                        <select onchange="tipeOwner(this)">
+                            <option value="perorangan" selected>Tipe Perorangan</option>
+                            <option value="lembaga">Tipe Lembaga</option>
+                        </select>
+
+                    </div>
+                    <div class="text-muted-label" style="padding-left: 0;padding-top: 5px;">Note: NIB hanya untuk Perusahaan/Badan Usaha.</div>
+                    <!-- end -->
+                    <div class="form-group form-group-left">
+                        <label class="label-form">Status User</label>
+                        <select>
+                            <option>Tipe Cold</option>
+                            <option>Tipe Hot</option>
+                        </select>
+                    </div>
+
+                    <!-- start form owener tipe perorangan -->
+                    <div id="owner_perorangan">
+                        <div class="form-group w-100 pt-10">
+                            <label class="label-form label-must border-0">Name</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group w-100 pt-10">
+                            <label class="label-form label-must border-0">KTP</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group w-100 pt-10">
+                            <label class="label-form border-0">Region<span
+                                    class="text-muted-label">(Optional)</span></label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group w-100 pt-10">
+                            <label class="label-form border-0">City<span
+                                    class="text-muted-label">(Optional)</span></label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group w-100 pt-10">
+                            <label class="label-form border-0">Post Code<span
+                                    class="text-muted-label">(Optional)</span></label>
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="form-group w-100 pt-10">
+                            <label class="label-form label-must border-0">Alamat</label>
+                            <textarea class="form-control" rows="5"></textarea>
+                        </div>
+                        <div class="form-group w-100 pt-10">
+                            <label class="label-form border-0">Phone (Whatsapp)<span
+                                    class="text-muted-label">(Optional)</span></label>
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="form-group w-100 pt-10">
+                            <label class="label-form border-0">Phone (Office)<span
+                                    class="text-muted-label">(Optional)</span></label>
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="form-group w-100 pt-10">
+                            <label class="label-form border-0">Birthdate<span
+                                    class="text-muted-label">(Optional)</span></label>
+                            <div class="p-relative">
+                                <input type="text" class="form-control">
+                                <span class="text-mute-form"><i class="fa fa-chevron-down"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group-button pt-10">
+                            <label class="pt-10">Upload KTP Pemilik</label>
+                            <div class="d-flex flex-wrap pt-10">
+                                <button class="btn btn-camera"><img src="../assets/image/icon_camera.png"></button>
+                                <button class="btn btn-primary">Select Photo</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="owner_lembaga" class="d-none">
+                        <div class="form-group w-100 pt-10">
+                            <label class="label-form label-must border-0">Nama Lembaga</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group w-100 pt-10">
+                            <label class="label-form label-must border-0">NIB</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group w-100 pt-10">
+                            <label class="label-form border-0">Region<span
+                                    class="text-muted-label">(Optional)</span></label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group w-100 pt-10">
+                            <label class="label-form border-0">City<span
+                                    class="text-muted-label">(Optional)</span></label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group w-100 pt-10">
+                            <label class="label-form border-0">Post Code<span
+                                    class="text-muted-label">(Optional)</span></label>
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="form-group w-100 pt-10">
+                            <label class="label-form border-0">Telepon Kantor<span
+                                    class="text-muted-label">(Optional)</span></label>
+                            <input type="number" class="form-control">
+                        </div>
+                        <!-- start jika yang dipilih tidak dikuasakan maka element dengan id form_kuasa akan ditambahkan class d-none -->
+                        <div class="form-group form-group-left pt-10">
+                            <label class="label-form">Status Kuasa</label>
+                            <select onchange="changeKuasa(this)">
+                                <option value="dikuasakan">Dikuasakan</option>
+                                <option value="tidak dikuasakan">Tidak Dikuasakan</option>
+                            </select>
+                        </div>
+                        <!-- end -->
+                        <!-- start form kuasa jika status yang dipilih dikuasakan -->
+                        <div id="form_kuasa">
+                            <div class="tab-header mt-25">
+                                <button class="tablinks tablinks-pemilik-modal"
+                                    onclick="openTab(event, 'pemberi','tabcontent-pemilik-modal','tablinks-pemilik-modal')"
+                                    id="defaultOpenKuasa">
+                                    Pemberi Kuasa</button>
+                                <button class="tablinks tablinks-pemilik-modal"
+                                    onclick="openTab(event, 'penerima','tabcontent-pemilik-modal','tablinks-pemilik-modal')">Penerima
+                                    Kuasa</button>
+                            </div>
+                            <!-- start form pemberi kuasa -->
+                            <div id="pemberi" class="tabcontent tabcontent-pemilik-modal mt-15">
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form label-must border-0">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form label-must border-0">KTP</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form label-must border-0">Jabatan</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form border-0">Region<span
+                                            class="text-muted-label">(Optional)</span></label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form border-0">City<span
+                                            class="text-muted-label">(Optional)</span></label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form border-0">Post Code<span
+                                            class="text-muted-label">(Optional)</span></label>
+                                    <input type="number" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form label-must border-0">Alamat</label>
+                                    <textarea class="form-control" rows="5"></textarea>
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form border-0">Phone (Whatsapp)<span
+                                            class="text-muted-label">(Optional)</span></label>
+                                    <input type="number" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form border-0">Phone (Office)<span
+                                            class="text-muted-label">(Optional)</span></label>
+                                    <input type="number" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form border-0">Birthdate<span
+                                            class="text-muted-label">(Optional)</span></label>
+                                    <div class="p-relative">
+                                        <input type="text" class="form-control">
+                                        <span class="text-mute-form"><i class="fa fa-chevron-down"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group-button pt-10">
+                                    <label class="pt-10">Upload KTP Pemberi Kuasa</label>
+                                    <div class="d-flex flex-wrap pt-10">
+                                        <button class="btn btn-camera"><img
+                                                src="../assets/image/icon_camera.png"></button>
+                                        <button class="btn btn-primary">Select Photo</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end form pemberi kuasa -->
+                            <!-- start form penerima kuasa -->
+                            <div id="penerima" class="tabcontent tabcontent-pemilik-modal mt-15">
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form label-must border-0">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form label-must border-0">KTP</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form label-must border-0">Jabatan</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form border-0">Region<span
+                                            class="text-muted-label">(Optional)</span></label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form border-0">City<span
+                                            class="text-muted-label">(Optional)</span></label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form border-0">Post Code<span
+                                            class="text-muted-label">(Optional)</span></label>
+                                    <input type="number" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form label-must border-0">Alamat</label>
+                                    <textarea class="form-control" rows="5"></textarea>
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form border-0">Phone (Whatsapp)<span
+                                            class="text-muted-label">(Optional)</span></label>
+                                    <input type="number" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form border-0">Phone (Office)<span
+                                            class="text-muted-label">(Optional)</span></label>
+                                    <input type="number" class="form-control">
+                                </div>
+                                <div class="form-group w-100 pt-10">
+                                    <label class="label-form border-0">Birthdate<span
+                                            class="text-muted-label">(Optional)</span></label>
+                                    <div class="p-relative">
+                                        <input type="text" class="form-control">
+                                        <span class="text-mute-form"><i class="fa fa-chevron-down"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group-button pt-10">
+                                    <label class="pt-10">Upload KTP Penerima Kuasa</label>
+                                    <div class="d-flex flex-wrap pt-10">
+                                        <button class="btn btn-camera"><img
+                                                src="../assets/image/icon_camera.png"></button>
+                                        <button class="btn btn-primary">Select Photo</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end form penerima kuasa -->
+                        </div>
+                        <!-- end form kuasa -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-action-modal bg-close" type="button"
+                        onclick="colseModal('modal-show-input-owner')">Close</button>
+                    <button class="btn btn-action-modal bg-submit" type="button"
+                        onclick="colseModal('modal-show-input-owner')">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- start modal tanda tangan digital -->
+        <div id="modal-show-signature" class="modal">
+            <div class="modal-body">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        Tanda Tangan Digital
+                    </div>
+                    <span class="close-modal" onclick="colseModal('modal-show-signature')"><i
+                            class="fa fa-times"></i></span>
+                </div>
+                <div class="modal-content">
+                    <div class="heading-signature">Dengan melakukan tanda tangan, Anda Menyatakan bahwa :</div>
+                    <ol class="description-signature">
+                        <li>Tanda tangan ini sah secara hukum</li>
+                        <li>Anda melakukan tanda tangan ini dengan sadar tanpa paksaan pihak tertentu</li>
+                        <li>Tanda tangan ini adalah tanda tangan milik (Nama)</li>
+                        <li>Tanda tangan Anda aman karena di-enkripsi</li>
+                        <li>Menyatakan bahwa data Pemilik dan Data Properti yang telah saya sampaikan dalam Perjanjian
+                            ini adalah benar</li>
+                    </ol>
+                    <div class="container-signature">
+                        <div class="sub-container-signature">
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-action-modal bg-close" type="button"
+                        onclick="colseModal('modal-show-signature')">Close</button>
+                    <button class="btn btn-action-modal bg-option" type="button">Clear</button>
+                    <button class="btn btn-action-modal bg-submit" type="button"
+                        onclick="colseModal('modal-show-signature')">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- end modal tanda tangan digital -->
+    </section>
+    <script>
+        InputLengthCheck()
+        document.getElementById("defaultOpen").click();
+        document.getElementById("defaultOpenKuasa").click();
+        var global_modal = document.getElementsByClassName('modal');
+
+        function openTab(evt, tabName, tabContentParam, tabLinksParam) {
+            var i, tabcontent, tablinks, borderheader;
+            tabcontent = document.getElementsByClassName(tabContentParam);
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName(tabLinksParam);
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" tab-header-active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " tab-header-active";
+        }
+
+
+        function InputLengthCheck() {
+            //
+            let jalanInput = document.getElementById('input-jalan');
+            let jalanLength = jalanInput.value.length;
+            let JalanmaxLength = jalanInput.maxLength;
+            let renderTemplate = document.getElementById('template-length-jalan');
+            renderTemplate.innerHTML = jalanLength + "/" + JalanmaxLength;
+
+            //
+            let blokInput = document.getElementById('input-blok');
+            let blokLength = blokInput.value.length;
+            let blokmaxLength = blokInput.maxLength;
+            let renderTemplateBlok = document.getElementById('template-length-blok');
+            renderTemplateBlok.innerHTML = blokLength + "/" + blokmaxLength;
+
+            //
+            let rumahInput = document.getElementById('input-rumah');
+            let rumahLength = rumahInput.value.length;
+            let rumahmaxLength = rumahInput.maxLength;
+            let renderTemplateRumah = document.getElementById('template-length-rumah');
+            renderTemplateRumah.innerHTML = rumahLength + "/" + rumahmaxLength;
+
+            //
+            let daerahInput = document.getElementById('input-daerah');
+            let daerahLength = daerahInput.value.length;
+            let daerahmaxLength = daerahInput.maxLength;
+            let renderTemplateDaerah = document.getElementById('template-length-daerah');
+            renderTemplateDaerah.innerHTML = daerahLength + "/" + daerahmaxLength;
+
+            let taglineInput = document.getElementById('input-tagline');
+            let taglineLength = taglineInput.value.length;
+            let taglinemaxLength = taglineInput.maxLength;
+            let renderTemplatetagline = document.getElementById('template-length-tagline');
+            renderTemplatetagline.innerHTML = taglineLength + "/" + taglinemaxLength;
+
+            let descriptionInput = document.getElementById('input-description');
+            let descriptionLength = descriptionInput.value.length;
+            let descriptionmaxLength = descriptionInput.maxLength;
+            let renderTemplatedescription = document.getElementById('template-length-description');
+            renderTemplatedescription.innerHTML = descriptionLength + "/" + descriptionmaxLength;
+        }
+
+        function openModal(target) {
+            var modal = document.getElementById(target);
+            document.getElementsByTagName('body')[0].classList.add("overflow-hidden")
+            modal.style.display = "block";
+        }
+
+        function colseModal(target) {
+            var modal = document.getElementById(target);
+            document.getElementsByTagName('body')[0].classList.remove("overflow-hidden")
+            modal.style.display = "none";
+        }
+
+        function changeTipePjp(evt) {
+            let online = document.querySelectorAll('.pjp_online');
+            let offline = document.querySelectorAll('.pjp_offline');
+            console.log(evt.value);
+            if (evt.value == 'e-pjp') {
+                // remove class d-none element yang memiliki class pjp_online seperti komisi, masa aktif, negosiasi, tanda tangan, share document dll       
+                // add class d-none yang memiliki class pjp_offline seperti add file pjp document 
+                let inputPJP = document.getElementById("input_pjp_number");
+                let iconPJP = document.getElementById("icon_input_pjp_number");
+                inputPJP.setAttribute('readonly', true);
+                inputPJP.value = "";
+                inputPJP.placeholder = "Otomatis oleh sistem";
+                iconPJP.classList.remove('d-none');
+                let i = 0;
+                let x = 0;
+                for (i = 0; i < online.length; i++) {
+                    online[i].classList.remove('d-none');
+                }
+
+                for (x = 0; x < offline.length; x++) {
+                    offline[x].classList.add('d-none');
+                }
+            } else {
+                let inputPJP = document.getElementById("input_pjp_number");
+                let iconPJP = document.getElementById("icon_input_pjp_number");
+                inputPJP.removeAttribute('readonly');
+                inputPJP.value = "";
+                inputPJP.placeholder = "";
+                iconPJP.classList.add('d-none');
+
+                let a = 0;
+                let b = 0;
+                for (a = 0; a < online.length; a++) {
+                    online[a].classList.add('d-none');
+                }
+                for (b = 0; b < offline.length; b++) {
+                    offline[b].classList.remove('d-none');
+                }
+            }
+        }
+
+        function tipeOwner(evt) {
+            if (evt.value == 'lembaga') {
+                document.getElementById('owner_perorangan').classList.add('d-none');
+                document.getElementById('owner_lembaga').classList.remove('d-none');
+            } else {
+                document.getElementById('owner_perorangan').classList.remove('d-none');
+                document.getElementById('owner_lembaga').classList.add('d-none');
+            }
+        }
+
+        function changeKuasa(evt) {
+            if (evt.value == 'dikuasakan') {
+                document.getElementById("form_kuasa").classList.remove('d-none');
+            } else {
+                document.getElementById('form_kuasa').classList.add('d-none');
+            }
+        }
+
+        function changecheckboxMemberBroker(evt) {
+            console.log(evt.checked);
+            if (evt.checked == true) {
+                document.getElementById("btn-signature-broker").disabled = true;
+            } else {
+                document.getElementById("btn-signature-broker").disabled = false;
+            }
+        }
+    </script>
+</body>
+
+</html>
