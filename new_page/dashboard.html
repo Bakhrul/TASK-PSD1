@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+    <title>Dashboard</title>
+</head>
+<style>
+    @font-face {
+        font-family: Helvetica;
+        src: url(../assets/fonts/Helvetica.ttf);
+    }
+
+    body {
+        margin: 0 !important;
+        font-family: Helvetica;
+        background-color: #fff;
+        position: relative;
+    }
+
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sm-one,
+    .sm-two,
+    .sm-thirds,
+    .sm-fourth,
+    .md-one,
+    .md-two,
+    .md-third,
+    .md-four,
+    .lg-one,
+    .lg-two,
+    .lg-four,
+    .lg-six .lg-third {
+        width: 100%;
+    }
+
+    @keyframes fadeEffect {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media only screen and (max-width: 800px) {
+        .sm-one {
+            width: 100%;
+        }
+
+        .sm-two {
+            width: calc(100% / 2);
+        }
+
+        .sm-third {
+            width: calc(100% / 3 * 2);
+        }
+
+        .sm-fourth {
+            width: calc(100% / 4);
+        }
+
+        .column {
+            float: left;
+        }
+    }
+
+    @media only screen and (min-width: 800px) {
+        .md-one {
+            width: 100%;
+        }
+
+        .md-two {
+            width: calc(100% / 2);
+        }
+
+        .md-third {
+            width: calc(100% / 3);
+        }
+
+        .md-fourth {
+            width: calc(100% / 4);
+        }
+
+        .column {
+            float: left;
+        }
+
+    }
+
+    @media only screen and (min-width: 1200px) {
+        .lg-one {
+            width: 100%;
+        }
+
+        .lg-two {
+            width: calc(100% / 2);
+        }
+
+        .lg-third {
+            width: calc(100% / 3);
+        }
+
+        .lg-fourth {
+            width: calc(100% / 4);
+        }
+
+        .lg-six {
+            width: calc(100% / 6);
+        }
+
+        .column {
+            float: left;
+        }
+    }
+
+    .navbar {
+        background: #FFFFFF;
+        box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.1);
+        padding: 15px 25px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5em;
+    }
+
+    .image-navbar {
+        width: 37px;
+        margin-right: 15px;
+        height: 50px;
+    }
+
+    .text-navbar {
+        font-size: 20px;
+    }
+
+    .menu-dashboard {
+        display: flex;
+        margin: 0.5em 0;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+    }
+
+    .menu-dashboard .menu-header {
+        background: #FFFFFF;
+        border: 2px solid rgba(140, 24, 57, 0.6);
+        box-sizing: border-box;
+        box-shadow: 2px 0px 10px rgba(236, 30, 43, 0.1);
+        border-radius: 20px;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menu-dashboard .menu-header i {
+        font-size: 46px;
+        color: #8C1839;
+    }
+
+    .menu-dashboard .menu-description {
+        color: #7E7E7E;
+        font-weight: 500;
+        font-size: 16px;
+        padding-top: 12px;
+        text-align: center;
+    }
+
+    @media(max-width:992px) {
+        .menu-dashboard .menu-header {
+            width: 90px;
+            height: 90px;
+        }
+
+        .menu-dashboard .menu-header i {
+            font-size: 40px;
+        }
+
+        .menu-dashboard .menu-description {
+            font-size: 14px;
+
+        }
+    }
+
+    @media(max-width:767px) {
+        .menu-dashboard .menu-header {
+            width: 85px;
+            height: 85px;
+        }
+
+        .menu-dashboard .menu-header i {
+            font-size: 36px;
+        }
+
+        .menu-dashboard .menu-description {
+            font-size: 13px;
+
+        }
+    }
+
+    @media(max-width:567px) {
+        .menu-dashboard .menu-header {
+            width: 70px;
+            height: 70px;
+        }
+
+        .menu-dashboard .menu-header i {
+            font-size: 32px;
+        }
+
+        .menu-dashboard .menu-description {
+            font-size: 13px;
+
+        }
+    }
+
+    @media(max-width:400px) {
+        .menu-dashboard .menu-header {
+            width: 60px;
+            height: 60px;
+        }
+
+        .menu-dashboard .menu-header i {
+            font-size: 24px;
+        }
+
+        .menu-dashboard .menu-description {
+            font-size: 12px;
+
+        }
+    }
+
+    @media(max-width:320px) {
+        .menu-element {
+            width: 50% !important;
+        }
+    }
+</style>
+
+<body>
+
+    <div class="navbar">
+        <img src="../assets/image/logo.png" class="image-navbar">
+        <span class="text-navbar">Dashboard</span>
+    </div>
+    <div class="container" style="margin-bottom: 2em;">
+        <div class="row">
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div class="menu-description">
+                        Profilku
+                    </div>
+                </div>
+            </div>
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-building"></i>
+                    </div>
+                    <div class="menu-description">
+                        My Property
+                    </div>
+                </div>
+            </div>
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-th-list"></i>
+                    </div>
+                    <div class="menu-description">
+                        My Listing
+                    </div>
+                </div>
+            </div>
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-bullseye"></i>
+                    </div>
+                    <div class="menu-description">
+                        My Target
+                    </div>
+                </div>
+            </div>
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <div class="menu-description">
+                        My Schedule
+                    </div>
+                </div>
+            </div>
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-graduation-cap"></i>
+                    </div>
+                    <div class="menu-description">
+                        Training
+                    </div>
+                </div>
+            </div>
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-shopping-basket"></i>
+                    </div>
+                    <div class="menu-description">
+                        Ecomerce
+                    </div>
+                </div>
+            </div>
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-bullhorn"></i>
+                    </div>
+                    <div class="menu-description">
+                        Info/Testimoni
+                    </div>
+                </div>
+            </div>
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-lock"></i>
+                    </div>
+                    <div class="menu-description">
+                        Ubah Sandi
+                    </div>
+                </div>
+            </div>
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-database"></i>
+                    </div>
+                    <div class="menu-description">
+                        Laporan Aktifitas
+                    </div>
+                </div>
+            </div>
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-line-chart"></i>
+                    </div>
+                    <div class="menu-description">
+                        Laporan Transaksi
+                    </div>
+                </div>
+            </div>
+
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-suitcase"></i>
+                    </div>
+                    <div class="menu-description">
+                        Marchandise
+                    </div>
+                </div>
+            </div>
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-trophy"></i>
+                    </div>
+                    <div class="menu-description">
+                        My Achievment
+                    </div>
+                </div>
+            </div>
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-file"></i>
+                    </div>
+                    <div class="menu-description">
+                        Mou
+                    </div>
+                </div>
+            </div>
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-desktop"></i>
+                    </div>
+                    <div class="menu-description">
+                        Marketing Report
+                    </div>
+                </div>
+            </div>
+            <div class="column lg-six md-fourth sm-fourth menu-element">
+                <div class="menu-dashboard">
+                    <div class="menu-header">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <div class="menu-description">
+                        Bantuan
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
